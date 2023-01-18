@@ -1,0 +1,32 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: Merriweather;
+  color: #000;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+/* Main Div Css*/
+.maindiv {
+  background-color: #fff;
+  border: 1px solid black;
+  height: 300vh;
+  width: 100%;
+  padding: 0px 15px 0px 15px;
+  margin: 30px 0px 30px 0px;
+  text-decoration: none solid rgba(0, 0, 0);
+}
+
+/* inner main div */
+.innermaindiv {
+  width: 95%;
+  border: 1px solid red;
+  margin: auto;
+  height: 100%;
+}
+.sorting{
+  margin-left: 20px;
+  font-weight: 500;
+}
