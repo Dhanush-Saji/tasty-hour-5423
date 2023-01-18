@@ -1,0 +1,20 @@
+a{
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.navlist{
+    background-color: #902735;
+    display: flex;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+.navlist >div{
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 20px;
+    transition: 0.5s;
+}
