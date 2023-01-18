@@ -1,7 +1,6 @@
 import React from "react";
 import { Box, SimpleGrid } from "@chakra-ui/react";
 import Styles from "../../ProductPageCss/Product.module.css";
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getdata } from "../../Redux/Product_redux/action";
@@ -33,7 +32,7 @@ const ProductPage = () => {
         </Box>
 
         <Box
-          border="1px solid green"
+          // border="1px solid green"
           width="84%"
           height="4%"
           float="left"
