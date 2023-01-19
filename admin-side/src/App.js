@@ -1,19 +1,10 @@
-import { ColorModeContext, useMode } from "./theme";
-import { CssBaseline, ThemeProvider } from "@mui/material";
-import Topbar from './pages/global/Topbar';
+import { Grid  } from '@chakra-ui/react'
+import Sidebar from './Components/Sidebar/Sidebar';
 function App() {
-  const [theme, colorMode] = useMode();
   return (
-    <ColorModeContext.Provider value={colorMode}>
-      <ThemeProvider value={theme}>
-        <CssBaseline />
-        <div className="app">
-          <main className="content">
-            <Topbar />
-          </main>
-        </div>
-      </ThemeProvider>
-    </ColorModeContext.Provider>
+    <Grid templateColumns='20% auto' gap={6} bg='#282C35' h='100vh'>
+      <Sidebar />
+    </Grid>
   );
 }
 

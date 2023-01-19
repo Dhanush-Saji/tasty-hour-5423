@@ -1,0 +1,14 @@
+.normalNavLink{
+    color:#A9A9A9;
+    width:100%;
+    height: 50px;
+    display:flex;
+  }
+
+.activeNavLink{
+    color:#1FCB4F;
+    background-color:#383A3F;
+    width:100%;
+    height: 50px;
+    display:flex;
+  }
