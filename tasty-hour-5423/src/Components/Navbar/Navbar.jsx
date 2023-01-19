@@ -8,6 +8,9 @@ import { IoMdArrowDropdown } from "react-icons/io";
 import { IoMdArrowDropup } from "react-icons/io";
 import { BsHeart } from "react-icons/bs";
 import { AiOutlineShoppingCart } from "react-icons/ai";
+import SmallScreenSearchModal from "../smallscreenseacrhmodal/SmallScreenSearchModal";
+import axios from "axios";
+
 import {
   useDisclosure,
   MenuItem,
@@ -19,12 +22,28 @@ import { useNavigate } from "react-router-dom";
 
 import locationFn from "../../API/location";
 import DropdownNav from "../dropdownMenuNav/DropdownNav";
+
+const getQueryData = (payload) => {
+  return axios.get(url, payload);
+};
+
 // {isOpen ? <IoMdArrowDropup /> : <IoMdArrowDropdown />}
 const Navbar = () => {
   const [location, setLocation] = useState({});
   const [isAuth, setIsAuth] = useState(false);
   const navigate = useNavigate();
-  const[count,setCount] = useState(0)
+  const [count, setCount] = useState(0);
+
+  const [query, setQuery] = useState("");
+
+  const handleQuerry = (e) => {
+    setQuery(e);
+    console.log(query);
+
+    // **callMethod(payload).then((res)=>{
+    //   //do Something
+    // })
+  };
 
   useEffect(() => {
     locationFn().then((res) => {
@@ -43,22 +62,32 @@ const Navbar = () => {
         <Input
           type="text"
           placeholder={`You are searching for ${location.state}`}
+          className="visible_nav_text_largeScreen"
+          onChange={(e) => handleQuerry(e.target.value)}
+        />
+        <SmallScreenSearchModal
+          state={location.state}
+          handleQuerry={handleQuerry}
         />
         <Text className="input_search">
-          <IoLocationOutline className="large_font" />
-          <Text>{location.city}, {location.state}</Text>
+          <IoLocationOutline className="large_font smallest_size" />
+          <Text>
+            <span className="smallest_size">{location.city}, </span>
+            <span>{location.state}</span>
+          </Text>
         </Text>
       </Box>
       <Box className="account_cart">
         <DropdownNav />
         <Box className="wishlist_in">
-          <BsHeart /> <Text>WishList</Text>
+          <BsHeart />{" "}
+          <Text className="visible_nav_text_largeScreen">WishList</Text>
         </Box>
-        
+
         <Box className="wishlist_in">
-            <AiOutlineShoppingCart/>
-            <Text className="visible_nav_text">Cart</Text>
-            <Text className="cart_item_count">{count}</Text>
+          <AiOutlineShoppingCart />
+          <Text className="visible_nav_text_largeScreen">Cart</Text>
+          <Text className="cart_item_count">{count}</Text>
         </Box>
       </Box>
     </Box>
@@ -66,7 +95,8 @@ const Navbar = () => {
 };
 
 export default Navbar;
-{/* <Box>
+{
+  /* <Box>
           {isAuth ? (
             <Menu isOpen={isOpen}>
               <MenuButton
@@ -134,4 +164,5 @@ export default Navbar;
           ) : (
             <Text>Register/login</Text>
           )}
-        </Box> */}
+        </Box> */
+}

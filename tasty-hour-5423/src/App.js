@@ -1,6 +1,7 @@
 import AllRoutes from './Routes/AllRoutes';
 import Navbar from './Components/Navbar/Navbar';
 import Navlist from './Components/Navlist/Navlist';
+import Footer from './Components/Footer/Footer';
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
     <Navbar />
     <Navlist/>
     <AllRoutes />
+    <Footer />
     </>
   );
 }

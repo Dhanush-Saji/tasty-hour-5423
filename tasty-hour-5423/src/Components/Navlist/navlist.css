@@ -15,6 +15,22 @@ a{
 .navlist >div{
     cursor: pointer;
     border-radius: 5px;
-    padding: 20px;
     transition: 0.5s;
 }
+
+.list_item :hover{
+    background-color: white;
+    color: #902735;
+}
+/* .list_item {
+    border: 1px solid white;
+} */
+.list_item h4{
+    color: white;
+    margin: 20px;
+}
+
+/* .list_item h4 :hover{
+    background-color: white;
+    color: #902735;
+} */
