@@ -3,14 +3,12 @@ import React from "react";
 import Styles from "../../ProductPageCss/Product.module.css";
 import {HiOutlineShoppingBag} from "react-icons/hi"
 const ProductItems = (products) => {
-  console.log("i am products", products);
   return (
     <Box
       padding="10px 12px 10px 12px"
       margin="15px 0 0 0"
       height="353px"
       width="95%"
-      // border="1px solid black"
       cursor="pointer"
      textAlign="center"
      className={Styles.cart}

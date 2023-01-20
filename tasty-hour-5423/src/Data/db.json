@@ -1,0 +1,27 @@
+{
+  "Prices":[
+    {"title":"Price"},
+    {"price":"1000-2000"},
+    {"price":"2000-5000"},
+    {"price":"500-1000"},
+    {"price":"Above 5000"},
+    {"price":"Below 5000"}
+   
+  ],
+  "pagination":[
+    {"page":"1"},
+    {"page":"2"},
+    {"page":"3"},
+    {"page":"4"},
+    {"page":"5"},
+    {"page":"6"},
+    {"page":"7"},
+    {"page":"8"},
+    {"page":"9"},
+    {"page":"10"}
+   
+  ]
+ 
+}
+
+
