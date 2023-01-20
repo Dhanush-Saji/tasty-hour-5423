@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./signup.css";
+import "./login.css";
 
 import {
   Modal,
@@ -20,11 +20,11 @@ import {
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
-const registerUser = (payload) => {
+const loginUser = (payload) => {
   axios.get("", payload);
 };
 
-function Signup() {
+function Login() {
   // const { isOpen, onOpen, onClose } = useDisclosure();
 
   // const initialRef = React.useRef(null);
@@ -35,9 +35,9 @@ function Signup() {
   const [password, setPassword] = useState();
   const [phoneNo, setPhoneNo] = useState();
   const toast = useToast();
-  const handleSubmit = () => {
+  const handleLogin = () => {
     let payload = { firstName, lastName, password, email, phoneNo };
-    registerUser(payload)
+    loginUser(payload)
       .then((res) => {
         toast({
           title: "Signup Successfull",
@@ -62,19 +62,20 @@ function Signup() {
   return (
     <Box className="signup">
       <Box className="signup_box">
-        <Heading _hover={{ border: "1px solid white" }}>Signup</Heading>
-        <Input placeholder="Enter First Name" />
-        <Input placeholder="Enter Last Name" />
+        <Heading _hover={{ border: "1px solid white" }}>Login</Heading>
         <Input placeholder="Enter Email" />
         <Input placeholder="Enter Phone No." />
         <Input placeholder="Enter Password" />
-
-        <Button onClick={handleSubmit}>Signup</Button>
-        <Text>Already Have an Acoount? <Link to="/login"><strong>Login</strong></Link></Text>
+        <Button onClick={handleLogin}>Login</Button>
+        <Text>
+          Need an Account?{" "}
+          <Link to="/register">
+            <strong>Signup</strong>
+          </Link>
+        </Text>
       </Box>
-      
     </Box>
   );
 }
 
-export default Signup;
+export default Login;

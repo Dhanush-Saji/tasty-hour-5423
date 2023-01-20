@@ -7,12 +7,17 @@ import {
   MenuList,
   Box,
   Text,
+  Button
 } from "@chakra-ui/react";
 import {AiOutlineUser} from 'react-icons/ai'
+import { useNavigate } from "react-router";
+
 
 const DropdownNav = () => {
   const [isAuth, setIsAuth] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const navigate = useNavigate()
   return (
     <Box className="account_cart">
       {isAuth ? (
@@ -81,7 +86,7 @@ const DropdownNav = () => {
           </MenuList>
         </Menu>
       ) : (
-        <Text>Register/login</Text>
+        <Button onClick={()=> navigate('/register')}>Register/login</Button>
       )}
     </Box>
   );

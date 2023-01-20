@@ -6,7 +6,8 @@ import CartPage from './../Pages/CartPage/CartPage';
 import CheckoutPage from './../Pages/CheckoutPage/CheckoutPage';
 import Wishlist from './../Pages/Wishlist/Wishlist';
 import SinglePage from './../Pages/SinglePage/SinglePage';
-
+import Signup from '../Components/Signup/Signup'
+import Login from '../Components/Login/Login'
 const AllRoutes = () => {
   return (
     <>
@@ -17,6 +18,8 @@ const AllRoutes = () => {
       <Route path='/cart' element={<CartPage />} />
       <Route path='/checkout' element={<CheckoutPage />} />
       <Route path='/wishlist' element={<Wishlist />} />
+      <Route path='/register' element={<Signup />} />
+      <Route path='/login' element={<Login />} />
     </Routes>
     </>
   )
