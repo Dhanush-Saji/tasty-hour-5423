@@ -1,0 +1,8 @@
+.topbarSearch{
+    background-color: #282C35;
+    border: none;
+    height: 2.2rem;
+}
+.topbarSearch > input{
+    outline: none;
+}

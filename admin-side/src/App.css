@@ -1,0 +1,10 @@
+.Parent{
+    background-color: #282C35;
+    display: grid;
+    grid-template-columns: 15% auto;
+}
+
+.secondParentDiv{
+    display: flex;
+    flex-direction: column;
+}

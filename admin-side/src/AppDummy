@@ -10,18 +10,22 @@ import './App.css'
 function App() {
   return (
     <>
-      <div className='Parent'>
     <ChakraProvider>
+      <div className='topParent'>
+    <Grid templateColumns='15% auto' gap={0} bg='#282C35' h='full'>
       <Sidebar />
-    </ChakraProvider>
-    <div className='secondParentDiv'>
-      <ChakraProvider>
-        <Topbar />
+      <Flex flexDirection='column'>
+      <Topbar />
         <Allroutes />
-        </ChakraProvider>
+      </Flex>
+    </Grid>
+    </div>
+    </ChakraProvider>
+
+    {/* <ThemeProvider> */}
       <MUIRoute />
-    </div>
-    </div>
+    {/* </ThemeProvider> */}
+
     </>
   );
 }
