@@ -1,0 +1,139 @@
+.Cartbody {
+  width: 75%;
+
+  margin: auto;
+
+}
+.carthead{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  
+}
+.carthead>h1{
+    font-size: 1rem;
+    font-weight:700 ;
+}
+
+.listheading{
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 25px;
+  border-top: 1px solid grey;
+  border-bottom: 1px solid grey ;
+}
+.subhead{
+  width: 45%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.allcartprod{
+  width: 100%;
+  
+border: 1px solid rgb(194, 189, 189);
+}
+.nfjhfhthckdkkjd4{
+width: 100%;
+
+margin-top: 35px;
+display: flex;
+
+}
+
+.addressbody87{
+ width: 70%;
+
+ padding-top: 20px;
+ 
+
+
+}
+.adresdescripton47{
+  width: 90%;
+  margin: auto;
+font-size: 14px;
+color: rgb(128, 128, 128);
+}
+.Addheadingcalss34{
+  font-size: 18px;
+  font-weight: 500;
+  color: rgb(0, 0, 0);
+}
+.payssbody87{
+  width: 30%;
+
+  padding-top: 20px;
+  
+}
+.finalpric546{
+  width: 100%;
+  margin: auto;
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.finalpric546_2{
+  width: 100%;
+  margin: auto;
+  margin-top: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+}
+.finalpric546_2>h1{
+  font-size:18px ;
+  font-weight: 600;
+}
+.palceorderbtn87{
+  height: 45px;
+  width: 100%;
+  margin: auto;
+  display: flex;
+  margin-top: 20px;
+  font-size: 19px ;
+  font-weight: 700;
+  align-items: center;
+  justify-content: center;
+  background-color: brown;
+  color: aliceblue;
+  border-radius:10px ;
+}
+@media screen and (max-width: 780px) {
+  .Cartbody {
+    width: 90%;
+
+    margin: auto;
+   
+  }
+  .listheading{
+display: none;
+  }
+  .nfjhfhthckdkkjd4{
+    width: 100%;
+    
+    margin-top: 35px;
+    display:block;
+   
+    }
+    
+    .addressbody87{
+     width: 100%;
+     height: 150px;
+   
+    
+    
+    }
+    .payssbody87{
+      width: 100%;
+      height: 150px;
+    
+     
+    }
+}
