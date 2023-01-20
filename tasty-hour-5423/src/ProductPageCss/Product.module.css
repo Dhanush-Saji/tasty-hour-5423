@@ -12,7 +12,8 @@
 .maindiv {
   background-color: #fff;
   /* border: 1px solid black; */
-  height: 300vh;
+ 
+  height: 600vh;
   width: 100%;
   padding: 0px 15px 0px 15px;
   margin: 30px 0px 30px 0px;
@@ -51,4 +52,7 @@
 :hover.cart{
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   padding: 7px 8px 7px 8px;
+}
+.pagination{
+  background: #fff!important;
 }
