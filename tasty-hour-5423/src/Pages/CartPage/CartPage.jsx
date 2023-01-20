@@ -2,8 +2,9 @@ import React from "react";
 import "./Cart.css";
 import { Singlitem } from "./Singlitem";
 import { Loader } from "./Loader";
-
+import { Navigate, useNavigate } from "react-router-dom";
 const CartPage = () => {
+  const navigate=useNavigate()
   return (
     <div className="Cartbody">
       <div className="carthead">
@@ -37,7 +38,7 @@ const CartPage = () => {
           <h1 className="Addheadingcalss34">PRICE DETAILS</h1>
           <div className="finalpric546"><h1>Price</h1><h1>₹2354</h1></div>
           <div className="finalpric546_2"><h1>SubTotal</h1><h1>₹2354</h1></div>
-          <div className="palceorderbtn87">Place Order</div>
+          <div className="palceorderbtn87" onClick={()=>navigate("/checkout")}>Place Order</div>
         </div>
       </div>
     </div>
