@@ -10,11 +10,7 @@ function App() {
     <Navbar />
     <Navlist/>
     <AllRoutes />
-
-  
-
     <Footer />
-
     </>
   );
 }

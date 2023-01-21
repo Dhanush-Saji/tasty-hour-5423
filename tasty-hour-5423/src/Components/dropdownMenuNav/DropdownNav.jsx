@@ -86,7 +86,7 @@ const DropdownNav = () => {
           </MenuList>
         </Menu>
       ) : (
-        <Button onClick={()=> navigate('/register')}>Register/login</Button>
+        <Button onClick={()=> navigate('/phonesignup')}>Register/login</Button>
       )}
     </Box>
   );
