@@ -1,4 +1,4 @@
-import { VStack, Image, Flex, Text,Spacer } from "@chakra-ui/react";
+import { VStack, Image, Flex, Text,Spacer,PopoverContent,Portal,PopoverTrigger,Popover,PopoverArrow,PopoverCloseButton,PopoverBody,Button, useDisclosure } from "@chakra-ui/react";
 import React from "react";
 import { MdSpaceDashboard, MdOutlineReviews } from "react-icons/md";
 import { AiOutlineUser } from "react-icons/ai";
@@ -12,16 +12,17 @@ import avatar from "../../assets/avatar.png";
 import "./Sidebar.css"
 
 const Sidebar = () => {
+  const {isOpen:isLogoutOpen,onOpen:onLogoutOpen,onClose:onLogoutClose} = useDisclosure()
   const sideBarLinks = [
-    {
-      title: "Dashboard",
-      icon: <MdSpaceDashboard />,
-      link: "/",
-    },
+    // {
+    //   title: "Dashboard",
+    //   icon: <MdSpaceDashboard />,
+    //   link: "/",
+    // },
     {
       title: "Users",
       icon: <AiOutlineUser />,
-      link: "/users",
+      link: "/",
     },
     {
       title: "Orders",
@@ -50,8 +51,9 @@ const Sidebar = () => {
     },
   ];
   return (
-    <VStack bg="#1A1C22" h="100vh"  pb='10'>
+    <VStack bg="#1A1C22" h={{ base: '100vh'}}  pb='8' justifyContent={{lg:'space-between'}}>
       {/* Logo Box */}
+      <VStack  mb={{base:'20px',lg:'0px'}}>
       <Flex alignItems={"center"} py="20px">
         <Link to="/" className="logo">
           <Image m="auto" src={logo} alt="logo" w="50%" objectFit="contain" />
@@ -71,14 +73,34 @@ const Sidebar = () => {
           </NavLink>
         ))}
       </div>
-      <Spacer />
-      <Flex  bg='#282C35' w='85%' borderRadius='lg' p='2' gap='4'>
+      </VStack>
+      {/* <Spacer /> */}
+      <Popover autoFocus={false}
+      isOpen={isLogoutOpen}
+      onOpen={onLogoutOpen}
+      onClose={onLogoutClose}
+      >
+      <PopoverTrigger>
+      <Flex  flexDirection={{base:'column',lg:'row'}}  bg='#282C35' w='85%' borderRadius='lg' p='3' gap='4' style={{cursor: 'pointer'}}>
         <Image src={avatar} alt="avatar" w="20%" objectFit="contain" />
         <Flex flexDirection='column'>
           <Text fontWeight='medium' fontSize='md' color='white'>Dhanush Saji</Text>
           <Text color='#A9A9A9' fontSize='sm'>View Profile</Text>
         </Flex>
       </Flex>
+      </PopoverTrigger>
+  <Portal>
+    <PopoverContent w='100%' p='1rem' bg='grey' borderColor='0px'>
+      <PopoverArrow />
+      {/* <PopoverCloseButton /> */}
+      <PopoverBody>
+        <Button colorScheme='gray' onClick={()=>{onLogoutClose()}}>Log Out</Button>
+      </PopoverBody>
+    </PopoverContent>
+  </Portal>
+</Popover>
+
+
     </VStack>
   );
 };

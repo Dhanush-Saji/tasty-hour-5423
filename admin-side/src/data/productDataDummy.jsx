@@ -1,4 +1,4 @@
-const productDataDummy = [
+export const productDataDummy = [
     {
       "_id": "63c7b81df737416ab210a1cd",
       "name": "Nutella Banana Waffle-Single",
@@ -240,5 +240,3 @@ const productDataDummy = [
       "price": "₹ 150"
     }
   ]
-
-export default productDataDummy

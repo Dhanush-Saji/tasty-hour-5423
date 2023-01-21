@@ -6,7 +6,7 @@ import Dashboard from './../Pages/Dashboard';
 const Allroutes = () => {
   return (
     <Routes>
-        <Route path='/' element={<Dashboard />} />
+        {/* <Route path='/' element={<Dashboard />} /> */}
         {/* <Route path='/users' element={<UserOverview />} /> */}
     </Routes>
   )

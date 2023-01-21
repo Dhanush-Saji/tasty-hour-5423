@@ -26,7 +26,7 @@ const Topbar = () => {
         <FiSearch />
       </Box>
       <MdNotificationsNone size='1.5rem' />
-      <MdOutlineLightMode size='1.5rem' />
+      {/* <MdOutlineLightMode size='1.5rem' /> */}
       </Flex>
     </Flex>
   );

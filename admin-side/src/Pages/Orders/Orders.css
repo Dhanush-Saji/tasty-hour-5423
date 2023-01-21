@@ -1,3 +1,8 @@
+.datagrid{
+    background-color: #1A1C22;
+    color: white;
+    padding: 2rem;
+}
 
 .even{
     background-color: #24262E;

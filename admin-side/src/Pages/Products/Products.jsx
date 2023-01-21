@@ -1,71 +1,109 @@
 import React from 'react'
-import { Flex } from '@chakra-ui/react';
 import {DataGrid,GridToolbar} from '@mui/x-data-grid'
 import { Box } from '@mui/system';
-import './UserOverview.css'
-import { userDataDummy } from './../../data/userDataDummy';
+import './Products.css'
+import { productDataDummy } from '../../data/productDataDummy';
 import { useMemo } from 'react';
-import { Button,Stack,Typography  } from '@mui/material';
+import { Button,Stack,Typography,IconButton} from '@mui/material';
 import {MdDelete} from 'react-icons/md'
+import {HiOutlineRefresh} from 'react-icons/hi'
 import {HiOutlinePlusSm} from 'react-icons/hi'
+import { useState } from 'react';
+import {useNavigate} from 'react-router-dom'
 
 
-const UserOverview = () => {
-  const yellow='yellow'
+const Products = () => {
+  const navigate = useNavigate();
+  const [name, setname] = useState("")
+  const [category, setcategory] = useState("")
+  const [image, setimage] = useState("")
+  const [desc, setdesc] = useState("")
+  const [price, setprice] = useState(0)
+  const [returnable, setreturnable] = useState(false)
+  const [cancellable, setcancellable] = useState(false)
+  const [timeToShip, settimeToShip] = useState(0)
+  const [returnWindow, setreturnWindow] = useState(0)
   const rows = useMemo(
-    () => userDataDummy.map((row, index) => ({ ...row, id: row._id })),
-    [userDataDummy]
+    () => productDataDummy.map((row, index) => ({ ...row, id: row._id })),
+    [productDataDummy]
   );
   const columns = useMemo(()=>[
   { 
     field: "_id",
     headerName: "ID",
-
     flex:1,
+    
+    
   },
   {
-    field: "first_name",
-    headerName: "Name",
-
+    field: "images",
+    headerName: "Images",
     flex:1,
-  },
-  {
-    field: "email",
-    headerName: "Email",
-
-    flex:1,
-  },
-  {
-    field: "timestamp",
-    headerName: "Last Login",
-
-    flex:1,
-  },
-  {
-    field: "phone",
-    headerName: "Phone Number",
-
-    flex:1,
-  },
-  {
-    field: "gender",
-    headerName: "",
-
-    flex:1,
+    
+    
     renderCell: ({ row }) =>
-      <Button size="small" variant="contained" onClick={() => console.log(row)} startIcon={<MdDelete />} color="error" sx={{borderRadius: 8}}>
-        Delete
-      </Button>,
-  },],[])
+      <img src={row.images} alt="Product image" />,
+  },
+  {
+    field: "name",
+    headerName: "Product Name",
+    flex:1,
+    
+  },
+  {
+    field: "category",
+    headerName: "Category",
+    flex:1,
+    
+  },
+  {
+    field: "price",
+    headerName: "Price",
+    flex:1,
+    
+    
+  },
+  {
+    field: "cancellable",
+    headerName: "",
+    flex:1,
+    
+    
+    renderCell: ({ row }) =>
+    <Button sx={{
+      ':hover': {
+        bgcolor: '#d39f1b'
+      },backgroundColor:'#FFC01E',color:'#1A1C22',
+    }}  height='1px' size="small" variant="contained" onClick={() => {}} startIcon={<HiOutlineRefresh />}>
+          Update
+        </Button>,
+  },
+  {
+    field: "",
+    headerName: "",
+    align:'center',
+    headerAlign: 'center',
+    
+    
+    renderCell: ({ row }) =>
+     <IconButton aria-label="delete" color="error" onClick={()=>console.log(row)}>
+      <MdDelete />
+      </IconButton>,
+  },
+],[])
+const addProductDirect = () =>{
+  navigate('/addproducts')
+}
   return (
     <>
     <Box  m="20px">
     <Stack direction="row" justifyContent='space-between'>
       <Stack>
-      <Typography fontWeight='bold' color='white' variant='h4'>User Overview</Typography>
+      <Typography fontWeight='bold' color='white' variant='h4'>Products</Typography>
       <Typography my='5px' mt='5px' color='#7D7D7D' variant='h6' sx={{fontSize:'0.8rem'}}>This data is directly fetching from database perform cautiously</Typography>
       </Stack>
       <div style={{display:'flex',alignItems:'center'}}>
+      <Button variant="contained" startIcon={<HiOutlinePlusSm />} onClick={addProductDirect}>Add Products</Button>
       </div>
     </Stack>
     <Box
@@ -112,4 +150,4 @@ const UserOverview = () => {
   )
 }
 
-export default UserOverview
+export default Products
