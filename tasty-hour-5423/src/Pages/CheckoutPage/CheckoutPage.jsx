@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect} from "react";
 import "./Chekout.css";
 import { BsCreditCardFill } from "react-icons/bs";
 import {
@@ -9,12 +9,44 @@ import {
   AccordionIcon,
   Box,
 } from "@chakra-ui/react";
+import { Navigate, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {getdata} from "../../Redux/cartReducer/action"
+import { Fisitem } from "./Fisitem";
 const CheckoutPage = () => {
   const [poup, Setpopup] = useState(false);
-
+  const navigate=useNavigate()
+  const dispatch=useDispatch()
+ 
+  const [value, setValue] = useState("");
+ 
+   const [subtotal, setSubtotal] = useState(0);
+  let data = useSelector((store) => store.CartReducer.cartData);
+ 
+  let total = 0;
+  data.forEach((ele) => {
+ 
+     total += ele.price ;
+   
+ });
+ 
+  useEffect(()=>{
+   if(data.length===0){
+     dispatch(getdata())
+   }
+   
+ 
+  },[dispatch,data.length])
+ 
   const Toglepoup = () => {
     Setpopup(!poup);
   };
+
+
+  const FinalALert=()=>{
+    alert("Order Sucsessfull....")
+    navigate("/")
+  }
   return (
     <div className="chceckout_body">
       <div className="adresscontaner">
@@ -61,7 +93,7 @@ const CheckoutPage = () => {
         <p className="stpetseterdjfgu">Step 1</p>
         <h1 className="contenerheading234">
           Payment
-          <span className="totalpriceinfo3098">| You Pay :₹ 1867.00</span>
+          <span className="totalpriceinfo3098">| You Pay :₹ { total}</span>
         </h1>
         <h2 className="payopheadi34">Payment Option</h2>
         <Accordion>
@@ -84,7 +116,7 @@ const CheckoutPage = () => {
                 <input type="text" placeholder="Year" />
                 <input type="text" placeholder="CVV" />
               </div>
-              <div className="paymentsubmitbtn979">PAY SECURELY ₹1867.00</div>
+              <div className="paymentsubmitbtn979" onClick={FinalALert}>PAY SECURELY ₹{ total}</div>
             </AccordionPanel>
           </AccordionItem>
 
@@ -107,7 +139,7 @@ const CheckoutPage = () => {
                 <input type="text" placeholder="Year" />
                 <input type="text" placeholder="CVV" />
               </div>
-              <div className="paymentsubmitbtn979">PAY SECURELY ₹1867.00</div>
+              <div className="paymentsubmitbtn979" onClick={FinalALert}>PAY SECURELY ₹{ total}</div>
             </AccordionPanel>
           </AccordionItem>
 
@@ -136,7 +168,7 @@ const CheckoutPage = () => {
                 <option value="SBI">AXIS Bank</option>
 
               </select>
-              <div className="paymentsubmitbtn979">PAY SECURELY ₹1867.00</div>
+              <div className="paymentsubmitbtn979" onClick={FinalALert}>PAY SECURELY ₹{ total}</div>
             </AccordionPanel>
           </AccordionItem>
           <AccordionItem className="dropdwnmodle098">
@@ -150,7 +182,7 @@ const CheckoutPage = () => {
             <AccordionPanel>
             <p className="formlabel">Enter UPI ID</p>
               <input placeholder="yourname@upi" className="paymentforminput3" />
-              <div className="paymentsubmitbtn979">PAY SECURELY ₹1867.00</div>
+              <div className="paymentsubmitbtn979" onClick={FinalALert}>PAY SECURELY ₹{ total}</div>
             </AccordionPanel>
           </AccordionItem>
           <AccordionItem className="dropdwnmodle098">
@@ -177,7 +209,7 @@ const CheckoutPage = () => {
                 <option value="SBI">Freecharge</option>
 
               </select>
-              <div className="paymentsubmitbtn979">PAY SECURELY ₹1867.00</div>
+              <div className="paymentsubmitbtn979" onClick={FinalALert}>PAY SECURELY ₹{ total}</div>
             </AccordionPanel>
           </AccordionItem>
           <AccordionItem className="dropdwnmodle098">
@@ -190,14 +222,25 @@ const CheckoutPage = () => {
 
             <AccordionPanel>
               <div>
-                <p>Please pay a total amount of ₹ 1867.00 upon delivery</p>
+                <p>Please pay a total amount of ₹ {total} upon delivery</p>
               </div>
-              <div className="paymentsubmitbtn979">PLACE ORDER</div>
+              <div className="paymentsubmitbtn979" onClick={FinalALert}>PLACE ORDER</div>
             </AccordionPanel>
           </AccordionItem>
         </Accordion>
       </div>
-      <div className="cartitemcontaner"></div>
+      <div className="cartitemcontaner">
+      <p className="stpetseterdjfgu">Order Details</p>
+        <div className="allorderDetails"> 
+        {data.length>0&&data.map((item)=>{
+        return <Fisitem key={item._id} el={item}/>
+       })}
+        
+        </div>
+       <div className="filkop098"><h1>Price</h1><p>{total}</p></div>
+       <div className="filkop098"><h1>Shiping</h1><p>Free*</p></div>
+       <div className="finalpoiunhy"><h1 className="he764">Total Payable</h1><p>{total}</p></div>
+      </div>
     </div>
   );
 };

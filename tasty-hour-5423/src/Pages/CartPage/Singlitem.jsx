@@ -13,7 +13,7 @@ export const Singlitem = ({el}) => {
   const Handleremove=() => {
     dispatch(Deletdata(el._id))
   }
-
+console.log(el._id)
   return (
     <>
       <div className="itembody">

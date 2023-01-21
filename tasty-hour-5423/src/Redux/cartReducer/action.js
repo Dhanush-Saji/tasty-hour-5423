@@ -37,7 +37,7 @@ import {
   export const getdata = () => (dispatch) => {
     dispatch(getCartDataRequest());
     return axios
-      .get("https://kind-pink-harp-seal-boot.cyclic.app/cart")
+      .get("https://api.npoint.io/0bbc64b4f7ce50304573")
       .then((res) => {
         dispatch(getCartDataSuccess(res.data));
       })
@@ -51,12 +51,9 @@ import {
   export const Deletdata = (id) => (dispatch) => {
     dispatch({ type: DELETE_CART_ITEM_REQUEST });
     return axios
-      .delete(`https://kind-pink-harp-seal-boot.cyclic.app/cart/${id}`)
+      .delete(`https://api.npoint.io/0bbc64b4f7ce50304573/${id}`)
       .then((res) => {
         dispatch({ type: DELETE_CART_ITEM_SUCCESS });
-      })
-      .then(()=>{
-        getdata()
       })
       .catch((e) => {
         dispatch({ type: DELETE_CART_ITEM__ERROR });
@@ -68,7 +65,7 @@ import {
   export const PluseCartdata = (id, qty, opr) => (dispatch) => {
     dispatch({ type: PLUS_CART_ITEM_REQUEST });
     return axios
-      .patch(`https://kind-pink-harp-seal-boot.cyclic.app/cart/${id}`, {
+      .patch(`https://api.npoint.io/0bbc64b4f7ce50304573/${id}`, {
         qty: opr == "+" ? qty + 1 : qty - 1,
       })
       .then((res) => {
@@ -84,7 +81,7 @@ import {
     dispatch({type:ADD_CART_ITEM_REQUEST})
     
     return axios 
-    .post(`https://kind-pink-harp-seal-boot.cyclic.app/cart`,{...payload,qty:1}).then((r)=>{
+    .post(`https://api.npoint.io/0bbc64b4f7ce50304573`,{...payload,qty:1}).then((r)=>{
         dispatch({
             type:ADD_CART_ITEM_SUCCESS,
             payload:r.data
