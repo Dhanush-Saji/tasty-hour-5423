@@ -15,6 +15,7 @@ const CartPage = () => {
 
   const [subtotal, setSubtotal] = useState(0);
  let data = useSelector((store) => store.CartReducer.cartData);
+ const [cartShowdata,setcartShowdata] = useState(data)
 
  let total = 0;
  data.forEach((ele) => {
@@ -38,7 +39,7 @@ const CartPage = () => {
   return (
     <div className="Cartbody">
       <div className="carthead">
-        <h1>My Cart(3 items)</h1>
+        <h1>My Cart{cartShowdata.length}</h1>
         <h1>Total Payable : ₹ {total}</h1>
       </div>
       <div className="listheading">

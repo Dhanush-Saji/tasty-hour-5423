@@ -1,4 +1,7 @@
 import {
+  ADD_CART_ITEM_REQUEST,
+  ADD_CART_ITEM_SUCCESS,
+  ADD_CART_ITEM__ERROR,
   DELETE_CART_ITEM_REQUEST,
   DELETE_CART_ITEM_SUCCESS,
   DELETE_CART_ITEM__ERROR,
@@ -20,6 +23,15 @@ let initialCart = {
 
 export const CartReducer = (state = initialCart, { type, payload }) => {
   switch (type) {
+    case ADD_CART_ITEM_REQUEST:{
+      return{...state,isLoading:true}
+  }
+  case ADD_CART_ITEM_SUCCESS:{
+      return{...state,isLoading:false,cartData:[...state.cartData,payload]}
+  }
+  case ADD_CART_ITEM__ERROR:{
+      return{...state,isError:true,isLoading:false}
+  }
     case GET_CART_DATA_REQUEST: {
       return {
         ...state,

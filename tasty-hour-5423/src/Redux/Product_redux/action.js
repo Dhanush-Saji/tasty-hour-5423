@@ -26,7 +26,7 @@ const GET_PRODUCT_ERROR = () => {
 const getdata = (dispatch) => {
   dispatch(GET_PRODUCT_REQUEST());
   return axios
-    .get("https://api.npoint.io/1af1902137a1f189bb9b")
+    .get("https://api.npoint.io/488a1484589210ced2c1")
     .then((res) => {
       dispatch(GET_PRODUCT_SUCCESS(res.data));
     })

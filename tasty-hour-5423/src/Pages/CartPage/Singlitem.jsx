@@ -2,7 +2,7 @@ import { isDisabled } from "@testing-library/user-event/dist/utils";
 import React, { useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {updateqty,deletcartitem} from "../../Redux/cartReducer/action"
+// import {updateqty,deletcartitem} from "../../Redux/cartReducer/action"
 
 import "./Singlitem.css";
 export const Singlitem = ({el}) => {
@@ -11,7 +11,7 @@ export const Singlitem = ({el}) => {
 
 
   const Handleremove=() => {
-    deletcartitem(el._id)
+    // deletcartitem(el._id)
     window.location.reload();
   }
 

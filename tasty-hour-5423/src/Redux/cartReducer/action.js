@@ -12,6 +12,24 @@ import {
 } from "./actionTypes";
 import axios from "axios";
 
+export const addDataRequest = () => {
+  return {
+    type: ADD_CART_ITEM_REQUEST,
+  };
+};
+
+export const addDataSuccess = (payload) => {
+  return {
+    type: ADD_CART_ITEM_SUCCESS,
+    payload: payload,
+  };
+};
+
+export const addDataError = () => {
+  return {
+    type: ADD_CART_ITEM__ERROR,
+  };
+};
 export const getCartDataRequest = () => {
   return {
     type: GET_CART_DATA_REQUEST,
@@ -77,13 +95,9 @@ export const PluseCartdata = (id, qty, opr) => (dispatch) => {
 
 
 export const addTocart=(product)=>(dispatch)=>{
-  dispatch({ type: ADD_CART_ITEM_REQUEST });
-  return axios
-    .post(`https://gold-clever-dhole.cyclic.app/cart`,product)
-    .then((res) => {
-      dispatch({ type: ADD_CART_ITEM_SUCCESS });
-    })
-    .catch((e) => {
-      dispatch({ type: ADD_CART_ITEM__ERROR });
-    });
+  // console.log(product);
+  dispatch(addDataRequest());
+  dispatch(addDataSuccess(product));
+  dispatch(addDataError());
+
 }

@@ -6,11 +6,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { addTocart,getdata } from "../../Redux/cartReducer/action";
 import { useDispatch, useSelector } from "react-redux";
 const ProductItems = (products) => {
-  const dispatch=useDispatch()
+  const dispatch = useDispatch()
 
   const PostTocart=() => {
-    console.log(545)
-    addTocart(products)
+    dispatch(addTocart(products))
   }
   const navigate = useNavigate();
   return (
