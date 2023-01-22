@@ -10,7 +10,7 @@ import { Box, Heading, Text, useToast } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 
 const postToCart = () => {
-  return axios.post("", payload);
+  // return axios.post("", payload);
 };
 
 const SinglePage = ({ id }) => {
@@ -18,14 +18,14 @@ const SinglePage = ({ id }) => {
   const Productdata = useSelector((items) => items.ProductReducer);
   const toast = useToast();
   const location = useLocation()
+  const {name,image,returnable,price,cancellable,description,return_window,category,discount,popular } = location.state
   const [data, setData] = useState({
-    images:
-      "https://images.unsplash.com/photo-1674289145833-b3ec3cd37b34?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDF8aVVJc25WdGpCMFl8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60",
-    title: "demo prod",
-    price: 1500,
-    description:
-      "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis dignissimos quo voluptas distinctio, enim sequi reiciendis facilis, animi sit nobis doloribus harum nisi non, cumque voluptatum perferendis. Aliquam, deserunt ullam.",
-    category: "lorem",
+    images:image,
+    title: name,
+    price: price,
+    description:description,
+    category: category,
+    returnable,cancellable,return_window,discount,popular
   });
 
   const handlePost = () => {

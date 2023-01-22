@@ -88,7 +88,7 @@ const PhoneSignUp = () => {
       localStorage.setItem("auth", true);
       // dispatch(getUserLoginSuccess({ user: number, token: otp }));
       const userData = {
-        user: user.disdisplayName || user.phoneNumber,
+        user: user.displayName || user.phoneNumber,
         token: user.accessToken,
       };
 

@@ -17,7 +17,7 @@ const ProductItems = (products) => {
     >
       <Box width="100%" height="227px">
         <Img
-          src={products.images}
+          src={products.image}
           height="100%"
           width="100%"
           onClick={() => {

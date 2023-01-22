@@ -26,7 +26,7 @@ const GET_PRODUCT_ERROR = () => {
 const getdata = (dispatch) => {
   dispatch(GET_PRODUCT_REQUEST());
   return axios
-    .get("http://localhost:8080/products")
+    .get("https://api.npoint.io/1af1902137a1f189bb9b")
     .then((res) => {
       dispatch(GET_PRODUCT_SUCCESS(res.data));
     })
@@ -34,9 +34,10 @@ const getdata = (dispatch) => {
       dispatch(GET_PRODUCT_ERROR());
     });
 };
+
 const sortdata=(price)=>(dispatch)=>{
 dispatch(GET_PRODUCT_REQUEST())
-  return axios.get("http://localhost:8080/products",{ params: { price: price } }).then((res)=>{
+  return axios.get("https://api.npoint.io/1af1902137a1f189bb9b",{ params: { price: price } }).then((res)=>{
    
     console.log(res.data);
     dispatch(GET_PRODUCT_SUCCESS(res.data))

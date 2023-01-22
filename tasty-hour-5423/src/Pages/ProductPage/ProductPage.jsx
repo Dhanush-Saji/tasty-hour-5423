@@ -11,6 +11,7 @@ import { useState } from "react";
 const ProductPage = () => {
   const dispatch = useDispatch();
   const Productdata = useSelector((items) => items.ProductReducer);
+  console.log(Productdata);
   const [search,setSeacrh]=useState("")
   useEffect(() => {
     dispatch(getdata);
