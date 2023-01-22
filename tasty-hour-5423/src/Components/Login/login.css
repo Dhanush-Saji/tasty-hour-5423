@@ -1,0 +1,32 @@
+.signup {
+    width: 90%;
+    margin: auto;
+    padding: 2rem;
+  }
+  
+  .signup > h1:hover {
+    color: #902735;
+    border: none;
+  }
+  
+  .signup_box {
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 0.8rem;
+    margin: auto;
+    padding: 2rem;
+  }
+  
+  .signup_box > button {
+    background-color: #902735;
+    color: white;
+  }
+  
+  .signup_box :hover {
+    background-color: white;
+    color: #902735;
+    border: 1px solid #902735;
+  }
+  

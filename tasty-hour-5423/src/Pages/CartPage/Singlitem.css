@@ -1,0 +1,129 @@
+.itembody{
+    width: 100%;
+    height: 100px;
+    margin-top:25px ;
+    display: flex;
+}
+.imgbody{
+    width: 50%;
+    height: 100px;
+    
+    display: flex;
+    justify-content: space-between;
+}
+
+.itemimg{
+    width: 25%;
+   
+}
+.qtybody{
+    width: 25%;
+    display: flex;
+    padding-top: 10px;
+    justify-content:space-evenly;
+    
+}
+.titalbody{
+    width: 45%;
+
+}
+.qtyadustbtn2335{
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    color: red;
+    display: flex;
+    font-size: larger;
+    font-weight: bolder;
+    align-items: center;
+    justify-content: center;
+    border: 1.5px solid red;
+
+}
+.removebtn{
+    margin-top: 10px;
+    font-size: 15px;
+    color: red;
+    cursor: pointer;
+}
+.tital2344{
+    font-weight: 500;
+}
+.pricebody{
+    width: 50%;
+    height: 100px;
+ 
+    display: flex;
+
+    justify-content: space-around;
+}
+.deliverybody123{
+    width: 48%;
+}
+.privhds3{
+    width: 48%;
+    display: flex;
+   justify-content: flex-end;
+}
+.resbody{
+    display: none;
+}
+
+
+@media screen and (max-width: 780px) {
+    .itembody{
+       display: none;
+    }
+    .resbody{
+        display: block;
+        width: 100%;
+        height: 230px;
+        margin-top: 20px;
+    }
+    .resimggbody2376{
+        width: 100%;
+        height: 70%;
+        display: flex;
+       
+    }
+    .resimg7654{
+        width: 40%;
+        height: 100%;
+    }
+    .restitlbody8765{
+        width: 60%;
+        height: 10%;
+        text-align: right;
+        padding-right: 10px;
+    }
+    .resmainheadingtitla324{
+        font-weight: 500;
+    }
+    .esqtybody4345{
+        height: 30%;
+        width: 100%;
+        
+        display: flex;
+    }
+    .ressqtyadjuster{
+        width: 50%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        justify-content: left;
+        padding-left: 20px;
+    }
+    .respricebiody546978945{
+        width: 50%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        padding-right: 20px;
+    }
+    .deliverydeatales2154{
+        font-size: 12px;
+        color: rgb(120, 122, 122);
+    }
+}

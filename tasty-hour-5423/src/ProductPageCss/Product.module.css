@@ -1,0 +1,58 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: Merriweather;
+  color: #000;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+/* Main Div Css*/
+.maindiv {
+  background-color: #fff;
+  /* border: 1px solid black; */
+ 
+  height: 600vh;
+  width: 100%;
+  padding: 0px 15px 0px 15px;
+  margin: 30px 0px 30px 0px;
+  text-decoration: none solid rgba(0, 0, 0);
+}
+
+/* inner main div */
+.innermaindiv {
+  width: 95%;
+  /* border: 1px solid red; */
+  margin: auto;
+  height: 100%;
+}
+.sorting{
+  margin-left: 20px;
+  font-weight: 500;
+}
+.name{
+  white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-align: center;
+    padding-top: 15px;
+}
+.button{
+  padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    background: #902735!important;
+    color: #fff!important;
+    text-align: center;
+  
+    width: 100%;
+}
+:hover.cart{
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  padding: 7px 8px 7px 8px;
+}
+.pagination{
+  background: #fff!important;
+}

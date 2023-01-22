@@ -1,0 +1,30 @@
+html{
+    scroll-behavior: smooth;
+}
+::-webkit-scrollbar{
+    display: none;
+}
+.g-btn {
+    width: 100% !important;
+    height: 40px !important;
+    line-height: 40px !important;
+    font-size: 15px !important;
+  }
+  .g-btn > div,
+  .g-btn > div > svg {
+    width: 40px !important;
+    height: 38px !important;
+  }
+  .button-right {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  #recaptcha-container {
+    margin: 20px;
+  }
+
+  .login_signupbox{
+    min-height: 50vh;
+    margin: auto;
+  }
