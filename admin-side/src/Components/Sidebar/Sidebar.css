@@ -1,0 +1,27 @@
+.navlinkParentDiv{
+    width: 100%;
+}
+.normalNavLink{
+    color:#A9A9A9;
+    width:100%;
+    height: 45px;
+    display:flex;
+  }
+
+.activeNavLink{
+    color:#1FCB4F;
+    background-color:#383A3F;
+    width:100%;
+    height: 45px;
+    display:flex;
+    
+  }
+.activeNavLink::before{
+    content: '';
+    background-color:yellow;
+    width:5px;
+    border-radius: 0px 5px 5px 0px;
+  }
+.normalNavLink:hover{
+  background-color:#24262e
+}

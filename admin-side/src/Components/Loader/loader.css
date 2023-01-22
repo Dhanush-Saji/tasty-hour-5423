@@ -1,0 +1,25 @@
+.loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .loader-content {
+    margin-top: 12rem;
+    width: 15%;
+  }
+  
+  /* ============== MEDIUM DEVICES ============== */
+  @media screen and (max-width: 1024px) {
+    .loader-content {
+      margin-top: 12rem;
+      width: 25%;
+    }
+  }
+  
+  /* ============== SMALL DEVICES ============== */
+  @media screen and (max-width: 600px) {
+    .loader-content {
+      margin-top: 12rem;
+      width: 55%;
+    }
+  }

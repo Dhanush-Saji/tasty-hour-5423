@@ -1,4 +1,4 @@
-const dummyData = [
+export const userDataDummy = [
   {
     "_id": "63c7254504cc187cddabb130",
     "phone": 9994027350,
@@ -89,6 +89,4 @@ const dummyData = [
     "gender": "male",
     "timestamp": "2020-03-04"
   }
-]
-
-export default dummyData
+];

@@ -1,19 +1,30 @@
-import { ColorModeContext, useMode } from "./theme";
+import { Grid,Flex  } from '@chakra-ui/react'
+import Sidebar from './Components/Sidebar/Sidebar';
+import Topbar from './Components/Topbar/Topbar';
+import Allroutes from './Routes/Allroutes';
+import { ChakraProvider } from "@chakra-ui/react";
 import { CssBaseline, ThemeProvider } from "@mui/material";
-import Topbar from './pages/global/Topbar';
+import MUIRoute from './Routes/MUIRoute';
+import './App.css'
+
 function App() {
-  const [theme, colorMode] = useMode();
   return (
-    <ColorModeContext.Provider value={colorMode}>
-      <ThemeProvider value={theme}>
-        <CssBaseline />
-        <div className="app">
-          <main className="content">
-            <Topbar />
-          </main>
-        </div>
-      </ThemeProvider>
-    </ColorModeContext.Provider>
+    <><ChakraProvider>
+   <Allroutes />
+  </ChakraProvider>
+        
+      <div className='Parent'>
+    <ChakraProvider>
+      <Sidebar />
+    </ChakraProvider>
+    <div className='secondParentDiv'>
+      <ChakraProvider>
+        <Topbar />
+        </ChakraProvider>
+      <MUIRoute />
+    </div>
+    </div>
+    </>
   );
 }
 

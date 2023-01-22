@@ -1,0 +1,56 @@
+{
+  "products": [
+    {
+      "name": "test1",
+      "category": "test1",
+      "images": "",
+      "returnable": false,
+      "cancellable": false,
+      "popular": 0,
+      "discount": 0,
+      "returnWindow": 0,
+      "description": "",
+      "price": 0,
+      "id": 1
+    },
+    {
+      "name": "test2",
+      "category": "test2",
+      "images": "",
+      "returnable": "true",
+      "cancellable": false,
+      "popular": 0,
+      "discount": 0,
+      "returnWindow": 0,
+      "description": "",
+      "price": 0,
+      "id": 2
+    },
+    {
+      "name": "test3",
+      "category": "test3",
+      "images": "sdsdsds.com",
+      "returnable": "true",
+      "cancellable": false,
+      "popular": "42",
+      "discount": "25",
+      "returnWindow": 0,
+      "description": "hellooo",
+      "price": "788",
+      "id": 3
+    },
+    {
+      "name": "test3",
+      "category": "test3",
+      "images": "",
+      "returnable": false,
+      "cancellable": false,
+      "popular": 0,
+      "discount": 0,
+      "returnWindow": 0,
+      "description": "",
+      "price": 0,
+      "id": 4
+    }
+  ]
+}
