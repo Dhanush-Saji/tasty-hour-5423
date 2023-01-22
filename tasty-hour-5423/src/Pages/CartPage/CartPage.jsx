@@ -1,15 +1,45 @@
-import React from "react";
+import React,{useEffect,useState} from "react";
 import "./Cart.css";
 import { Singlitem } from "./Singlitem";
 import { Loader } from "./Loader";
 import { Navigate, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {getdata} from "../../Redux/cartReducer/action"
+import axios from 'axios'
+
 const CartPage = () => {
   const navigate=useNavigate()
+ const dispatch=useDispatch()
+
+ const [value, setValue] = useState("");
+
+  const [subtotal, setSubtotal] = useState(0);
+ let data = useSelector((store) => store.CartReducer.cartData);
+
+ let total = 0;
+ data.forEach((ele) => {
+
+    total += ele.price ;
+  
+});
+
+ useEffect(()=>{
+  if(data.length===0){
+    dispatch(getdata())
+  }
+  
+
+ },[dispatch,data.length])
+
+
+ 
+
+
   return (
     <div className="Cartbody">
       <div className="carthead">
         <h1>My Cart(3 items)</h1>
-        <h1>Total Payable : ₹ 1373.8</h1>
+        <h1>Total Payable : ₹ {total}</h1>
       </div>
       <div className="listheading">
         <div className="subhead">
@@ -23,9 +53,10 @@ const CartPage = () => {
       </div>
 
       <div className="allcartprod">
-        <Singlitem />
-        <Singlitem />
-        <Singlitem />
+       {data.length>0&&data.map((item)=>{
+        return <Singlitem key={item._id} el={item}/>
+       })}
+    
       </div>
       <div className="nfjhfhthckdkkjd4">
         <div className="addressbody87">
@@ -36,8 +67,8 @@ const CartPage = () => {
         </div>
         <div className="payssbody87">
           <h1 className="Addheadingcalss34">PRICE DETAILS</h1>
-          <div className="finalpric546"><h1>Price</h1><h1>₹2354</h1></div>
-          <div className="finalpric546_2"><h1>SubTotal</h1><h1>₹2354</h1></div>
+          <div className="finalpric546"><h1>Price</h1><h1>₹{total}</h1></div>
+          <div className="finalpric546_2"><h1>SubTotal</h1><h1>₹{total}</h1></div>
           <div className="palceorderbtn87" onClick={()=>navigate("/checkout")}>Place Order</div>
         </div>
       </div>
