@@ -23,7 +23,6 @@ import { useNavigate } from "react-router-dom";
 
 import locationFn from "../../API/location";
 import DropdownNav from "../dropdownMenuNav/DropdownNav";
-
 const getQueryData = (payload) => {
   return axios.get(url, payload);
 };
