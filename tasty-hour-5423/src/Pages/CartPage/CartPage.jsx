@@ -4,7 +4,7 @@ import { Singlitem } from "./Singlitem";
 import { Loader } from "./Loader";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {updateqty,deletcartitem} from "../../Redux/cartReducer/action"
+import {getdata,Deletdata} from "../../Redux/cartReducer/action"
 import axios from 'axios'
 
 const CartPage = () => {
@@ -19,17 +19,17 @@ const CartPage = () => {
  let total = 0;
  data.forEach((ele) => {
 
-    total += ele.price ;
+    total += (ele.price*ele.qty) ;
   
 });
 
-//useEffect(()=>{
-// if(data.length===0){
-//   dispatch(getdata())
-// }
-// 
-//
-//},[dispatch,data.length])
+useEffect(()=>{
+ if(data.length===0){
+   dispatch(getdata())
+ }
+ 
+
+},[dispatch,data.length])
 
 
  
@@ -38,7 +38,7 @@ const CartPage = () => {
   return (
     <div className="Cartbody">
       <div className="carthead">
-        <h1>My Cart(3 items)</h1>
+        <h1>My Cart({data.length} items)</h1>
         <h1>Total Payable : ₹ {total}</h1>
       </div>
       <div className="listheading">
@@ -54,7 +54,7 @@ const CartPage = () => {
 
       <div className="allcartprod">
        {data.length>0&&data.map((item)=>{
-        return <Singlitem key={item._id} el={item}/>
+        return <Singlitem key={item.id} el={item}/>
        })}
     
       </div>
