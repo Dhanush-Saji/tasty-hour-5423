@@ -16,7 +16,7 @@ const Topbar = () => {
       justifyContent="space-between"
       bg="#1A1C22"
       w="full"
-      h="9%"
+      h="10%"
       alignItems="center"
     >
       <Text color='white' fontWeight='semibold' fontSize='xl'>Hello, Dhanush</Text>

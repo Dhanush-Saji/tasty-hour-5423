@@ -8,12 +8,11 @@ import { Box,Button,TextField } from '@mui/material'
 import {Formik} from 'formik'
 import * as yup from 'yup'
 import useMediaQuery from '@mui/material/useMediaQuery'
-import './AddProducts.css'
+import './UpdateProducts.css'
 import { useDispatch } from 'react-redux';
-import { addProduct } from '../../redux/products/Products.action';
 import { useNavigate } from 'react-router-dom';
 
-const AddProducts = () => {
+const UpdateProducts = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
     const isNonMobile = useMediaQuery("(min-width:600px)")
@@ -43,13 +42,13 @@ const AddProducts = () => {
     })
     const handleFormSubmit = (values) =>{
       // console.log(values)
-      dispatch(addProduct(values))
+    //   dispatch(addProduct(values))
       navigate('/products')
 
     }
   return (
     <>
-    <Box  m="20px">
+    { <Box  m="20px">
         <Formik
         onSubmit={handleFormSubmit}
         initialValues={initialValues}
@@ -129,14 +128,14 @@ const AddProducts = () => {
                     
                 </Box>
                 <Box display='flex' justifyContent='end' mt='20px'>
-                    <Button type='submit' color='primary' variant='contained'>Add Product</Button>
+                    <Button type='submit' color='yellow' variant='contained'>Update Product</Button>
                 </Box>
             </form>
         )}
         </Formik>
-    </Box>
+    </Box> }
     </>
   )
-}
+} 
 
-export default AddProducts
+export default UpdateProducts

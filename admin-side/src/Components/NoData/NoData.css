@@ -1,0 +1,10 @@
+.noDataClassParent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .noDataClass {
+    margin-top: 5rem;
+    width: 15%;
+  }
+  

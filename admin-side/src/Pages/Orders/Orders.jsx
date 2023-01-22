@@ -1,28 +1,13 @@
 import React from 'react'
-import { useState } from 'react';
-import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import axios from 'axios'
-import { Flex } from '@chakra-ui/react';
 import {DataGrid,GridToolbar} from '@mui/x-data-grid'
 import { Box } from '@mui/system';
 import './Orders.css'
 import { userDataDummy } from './../../data/userDataDummy';
 import { useMemo } from 'react';
-import { Button,Stack,Typography  } from '@mui/material';
-import {MdDelete} from 'react-icons/md'
-import {HiOutlinePlusSm} from 'react-icons/hi'
-import { getuserRequest, getuserSuccess, getuserError } from './../../redux/orders/Orders.action';
+import {Stack,Typography  } from '@mui/material';
 
 
 const Orders = () => {
-  const dispatch = useDispatch()
-  const getTodos = () =>{
-    dispatch(getuserRequest())
-    axios.get("http://localhost:8080/todos").then((res)=>dispatch(getuserSuccess(res.data))).catch((err)=>{
-        console.log(err)
-        dispatch(getuserError())})
-}
   const rows = useMemo(
     () => userDataDummy.map((row, index) => ({ ...row, id: row._id })),
     [userDataDummy]
@@ -58,9 +43,6 @@ const Orders = () => {
     flex:1
     
   }],[])
-  useEffect(()=>{
-    getTodos()
-  },[])
   return (
     <>
     <Box  m="20px">

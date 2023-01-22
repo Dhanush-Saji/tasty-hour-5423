@@ -6,12 +6,14 @@ import { BsClipboardCheck } from "react-icons/bs";
 import { BiBox } from "react-icons/bi";
 import { IoIosHelpBuoy } from "react-icons/io";
 import { FiHelpCircle } from "react-icons/fi";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink,useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import avatar from "../../assets/avatar.png";
 import "./Sidebar.css"
+import { deleteData } from "../../utils/AccessLocalStorage";
 
 const Sidebar = () => {
+  const navigate = useNavigate()
   const {isOpen:isLogoutOpen,onOpen:onLogoutOpen,onClose:onLogoutClose} = useDisclosure()
   const sideBarLinks = [
     // {
@@ -50,6 +52,13 @@ const Sidebar = () => {
       link: "/helpsupport",
     },
   ];
+  const logOutFn = ()=>{
+    let key = 'pass'
+    deleteData(key)
+    onLogoutClose()
+    
+    navigate('/login')
+  }
   return (
     <VStack bg="#1A1C22" h={{ base: '100vh'}}  pb='8' justifyContent={{lg:'space-between'}}>
       {/* Logo Box */}
@@ -94,7 +103,7 @@ const Sidebar = () => {
       <PopoverArrow />
       {/* <PopoverCloseButton /> */}
       <PopoverBody>
-        <Button colorScheme='gray' onClick={()=>{onLogoutClose()}}>Log Out</Button>
+        <Button colorScheme='gray' onClick={logOutFn}>Log Out</Button>
       </PopoverBody>
     </PopoverContent>
   </Portal>

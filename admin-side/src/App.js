@@ -9,7 +9,10 @@ import './App.css'
 
 function App() {
   return (
-    <>
+    <><ChakraProvider>
+   <Allroutes />
+  </ChakraProvider>
+        
       <div className='Parent'>
     <ChakraProvider>
       <Sidebar />
@@ -17,7 +20,6 @@ function App() {
     <div className='secondParentDiv'>
       <ChakraProvider>
         <Topbar />
-        <Allroutes />
         </ChakraProvider>
       <MUIRoute />
     </div>

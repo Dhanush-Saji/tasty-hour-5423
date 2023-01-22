@@ -1,15 +1,21 @@
 import React from 'react'
+import NoData from '../../Components/NoData/NoData'
 import {DataGrid,GridToolbar} from '@mui/x-data-grid'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import { Box } from '@mui/system';
 import './Products.css'
 import { productDataDummy } from '../../data/productDataDummy';
 import { useMemo } from 'react';
-import { Button,Stack,Typography,IconButton} from '@mui/material';
+import { Button,Stack,Typography,IconButton,Tooltip} from '@mui/material';
+import {FiRefreshCcw} from 'react-icons/fi'
 import {MdDelete} from 'react-icons/md'
 import {HiOutlineRefresh} from 'react-icons/hi'
 import {HiOutlinePlusSm} from 'react-icons/hi'
 import { useState } from 'react';
 import {useNavigate} from 'react-router-dom'
+import axios from 'axios';
+import { getproductError, getproductRequest, getproductSuccess } from '../../redux/products/Products.action';
 
 
 const Products = () => {
@@ -23,13 +29,23 @@ const Products = () => {
   const [cancellable, setcancellable] = useState(false)
   const [timeToShip, settimeToShip] = useState(0)
   const [returnWindow, setreturnWindow] = useState(0)
+  const [loading,setLoading] = useState(true)
+  const dispatch = useDispatch()
+  let {products:productData,isLoading} = useSelector((store)=>store.productData)
+  const getProducts = () =>{
+    dispatch(getproductRequest())
+    axios.get("http://localhost:8080/products").then((res)=>dispatch(getproductSuccess(res.data))).catch((err)=>{
+        console.log(err)
+        dispatch(getproductError())})
+}
+//changed _id
   const rows = useMemo(
-    () => productDataDummy.map((row, index) => ({ ...row, id: row._id })),
-    [productDataDummy]
+    () => productData.map((row, index) => ({ ...row, id: row.id })),
+    [productData]
   );
   const columns = useMemo(()=>[
   { 
-    field: "_id",
+    field: "id",
     headerName: "ID",
     flex:1,
     
@@ -74,7 +90,7 @@ const Products = () => {
       ':hover': {
         bgcolor: '#d39f1b'
       },backgroundColor:'#FFC01E',color:'#1A1C22',
-    }}  height='1px' size="small" variant="contained" onClick={() => {}} startIcon={<HiOutlineRefresh />}>
+    }}  height='1px' size="small" variant="contained" onClick={() => {productUpdate(row)}} startIcon={<HiOutlineRefresh />}>
           Update
         </Button>,
   },
@@ -86,11 +102,36 @@ const Products = () => {
     
     
     renderCell: ({ row }) =>
-     <IconButton aria-label="delete" color="error" onClick={()=>console.log(row)}>
+     <IconButton aria-label="delete" color="error" onClick={()=>{productDelete(row)}}>
       <MdDelete />
       </IconButton>,
   },
 ],[])
+const productDelete = (row) =>{
+  console.log(row);
+}
+const productUpdate = (row) =>{
+  // navigate('/updateproducts')
+}
+useEffect(()=>{
+  getProducts()
+  const t = setTimeout(()=>{
+    setLoading(isLoading)
+  },2000)
+  return () => {
+    clearTimeout(t);
+  }
+},[])
+const refreshData = () =>{
+  setLoading(true)
+  getProducts()
+  const t = setTimeout(()=>{
+    setLoading(isLoading)
+  },1000)
+  return () => {
+    clearTimeout(t);
+  }
+}
 const addProductDirect = () =>{
   navigate('/addproducts')
 }
@@ -104,9 +145,17 @@ const addProductDirect = () =>{
       </Stack>
       <div style={{display:'flex',alignItems:'center'}}>
       <Button variant="contained" startIcon={<HiOutlinePlusSm />} onClick={addProductDirect}>Add Products</Button>
+      <Tooltip title="Refresh Data">
+      <div onClick={refreshData} style={{marginLeft:'1rem',cursor:'pointer',width:'50px',height: '50px',backgroundColor:'#7D7D7D',display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center',borderRadius:'50%'}} >
+        <FiRefreshCcw size='2rem' color='white' />
+      </div>
+</Tooltip>
       </div>
     </Stack>
-    <Box
+    {
+      loading?(<div><NoData /></div>):(
+        <>
+        <Box
         m="30px 0 0 0"
         // height="75vh"
         sx={{
@@ -145,6 +194,11 @@ const addProductDirect = () =>{
           params.indexRelativeToCurrentPage % 2 === 0 ? 'even' : 'odd'
         } className='datagridstyle' pageSize={5} />
         </Box>
+        <Typography my='5px' mt='5px' color='error' variant='h5' sx={{fontSize:'0.9rem'}}>This data is directly fetching from database, use cautiously</Typography>
+        </>
+      )
+    }
+    
     </Box>
     </>
   )
