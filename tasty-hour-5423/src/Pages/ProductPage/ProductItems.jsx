@@ -3,7 +3,15 @@ import React from "react";
 import Styles from "../../ProductPageCss/Product.module.css";
 import { HiOutlineShoppingBag } from "react-icons/hi";
 import { Link, useNavigate } from "react-router-dom";
+import { addTocart,getdata } from "../../Redux/cartReducer/action";
+import { useDispatch, useSelector } from "react-redux";
 const ProductItems = (products) => {
+  const dispatch=useDispatch()
+
+  const PostTocart=() => {
+    console.log(545)
+    addTocart(products)
+  }
   const navigate = useNavigate();
   return (
     <Box
@@ -31,7 +39,7 @@ const ProductItems = (products) => {
           {products.price}
         </Box>
         <Box>
-          <Button className={Styles.button}>
+          <Button className={Styles.button} onClick={PostTocart}>
             <HiOutlineShoppingBag style={{ background: "white" }} />
             <span style={{ marginLeft: "10px", color: "white" }}>
               Add to Cart
