@@ -22,9 +22,11 @@ import { useNavigate } from "react-router-dom";
 
 import locationFn from "../../API/location";
 import DropdownNav from "../dropdownMenuNav/DropdownNav";
+import { useDispatch } from "react-redux";
+import { searchdata } from "../../Redux/Product_redux/action";
 
 const getQueryData = (payload) => {
-  return axios.get(url, payload);
+  return axios.get(payload);
 };
 
 // {isOpen ? <IoMdArrowDropup /> : <IoMdArrowDropdown />}
@@ -33,16 +35,15 @@ const Navbar = () => {
   const [isAuth, setIsAuth] = useState(false);
   const navigate = useNavigate();
   const [count, setCount] = useState(0);
-
+  const [search, setSearch] = useState("");
   const [query, setQuery] = useState("");
 
+  const dispatch = useDispatch();
   const handleQuerry = (e) => {
+    const { value } = e.target;
+    setSearch({ ...search, name: value });
+    dispatch(searchdata(search));
     setQuery(e);
-    console.log(query);
-
-    // **callMethod(payload).then((res)=>{
-    //   //do Something
-    // })
   };
 
   useEffect(() => {
@@ -52,7 +53,9 @@ const Navbar = () => {
   }, []);
 
   // console.log(location);
+
   const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
     <Box className="nav">
       <Box className="nav_logo">
@@ -61,19 +64,19 @@ const Navbar = () => {
       <Box className="input_search">
         <Input
           type="text"
-          placeholder={`You are searching for ${location.state}`}
+          // placeholder={`You are searching for ${location.state}`}
           className="visible_nav_text_largeScreen"
-          onChange={(e) => handleQuerry(e.target.value)}
+          onChange={handleQuerry}
         />
         <SmallScreenSearchModal
-          state={location.state}
+          // state={location.state}
           handleQuerry={handleQuerry}
         />
         <Text className="input_search">
           <IoLocationOutline className="large_font smallest_size" />
           <Text>
-            <span className="smallest_size">{location.city}, </span>
-            <span>{location.state}</span>
+            {/* <span className="smallest_size">{location.city}, </span> */}
+            {/* <span>{location.state}</span> */}
           </Text>
         </Text>
       </Box>

@@ -2,6 +2,9 @@ import {
   get_request,
   get_success,
   get_error,
+  post_request,
+  post_success,
+  post_error
 } from "./actionTypes";
 import axios from "axios";
 /* for Getting the whole Data */
@@ -22,7 +25,25 @@ const GET_PRODUCT_ERROR = () => {
   };
 };
 
-/* For Getting the data */
+/* POST ACTIONS */
+// const POST_PRODUCT_REQUEST = () => {
+//   return {
+//     type: post_request,
+//   };
+// };
+// const POST_PRODUCT_SUCCESS = (payload) => {
+//   return {
+//     type: post_success,
+//     payload,
+//   };
+// };
+// const POST_PRODUCT_ERROR = () => {
+//   return {
+//     type: post_error,
+//   };
+// };
+
+/*Action  For Getting the data */
 const getdata = (dispatch) => {
   dispatch(GET_PRODUCT_REQUEST());
   return axios
@@ -64,6 +85,7 @@ dispatch(GET_PRODUCT_ERROR())
 }
 const searchdata=(data)=>(dispatch)=>{
   console.log("i am data",data);
+  
   dispatch(GET_PRODUCT_REQUEST())
   return axios.get("http://localhost:8080/products/search",{ params:data  }).then((res)=>{
    
@@ -74,4 +96,7 @@ const searchdata=(data)=>(dispatch)=>{
 dispatch(GET_PRODUCT_ERROR())
 })
 }
+
+
+
 export { getdata,sortdata,filterdata ,searchdata,pagination};

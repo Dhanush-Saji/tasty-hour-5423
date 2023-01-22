@@ -54,5 +54,13 @@
   padding: 7px 8px 7px 8px;
 }
 .pagination{
-  background: #fff!important;
+ 
+   
+    padding: 8px 15px 8px 15px;
+    margin-left: 15px;
+   background:  #902735!important;
+  color:white
+}
+.color1{
+  color:#fba937!important
 }
