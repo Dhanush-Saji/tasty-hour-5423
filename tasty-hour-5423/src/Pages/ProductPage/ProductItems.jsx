@@ -9,7 +9,7 @@ function postdata() {
 axios
       .post("http://localhost:8080/products", { product: products._id })
       .then((res) => {
-        alert("data addde");
+       
       })
       .catch((err) => {
         alert("erro");
