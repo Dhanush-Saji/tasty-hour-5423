@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {getdata} from "../../Redux/cartReducer/action"
+
 import { Fisitem } from "./Fisitem";
 const CheckoutPage = () => {
   const [poup, Setpopup] = useState(false);
@@ -30,14 +30,8 @@ const CheckoutPage = () => {
    
  });
  
-  useEffect(()=>{
-   if(data.length===0){
-     dispatch(getdata())
-   }
-   
- 
-  },[dispatch,data.length])
- 
+  
+
   const Toglepoup = () => {
     Setpopup(!poup);
   };
