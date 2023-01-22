@@ -11,6 +11,7 @@ import {
 } from "@chakra-ui/react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { getdata } from "../../Redux/cartReducer/action";
 
 import { Fisitem } from "./Fisitem";
 const CheckoutPage = () => {
@@ -24,13 +25,22 @@ const CheckoutPage = () => {
   let data = useSelector((store) => store.CartReducer.cartData);
  
   let total = 0;
-  data.forEach((ele) => {
- 
-     total += ele.price ;
-   
- });
- 
+ data.forEach((ele) => {
+
+    total += (ele.price*ele.qty) ;
   
+});
+
+ 
+ useEffect(()=>{
+  if(data.length===0){
+    dispatch(getdata())
+  }
+  
+ 
+ },[dispatch,data.length])
+ 
+ 
 
   const Toglepoup = () => {
     Setpopup(!poup);
