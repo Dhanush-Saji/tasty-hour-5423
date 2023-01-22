@@ -17,7 +17,7 @@ import {
   Menu,
   MenuButton,
   MenuList,
-  Button
+  Button,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 
@@ -25,13 +25,13 @@ import locationFn from "../../API/location";
 import DropdownNav from "../dropdownMenuNav/DropdownNav";
 
 const getQueryData = (payload) => {
-  return axios.get(url, payload);
+  // return axios.get(url, payload);
 };
 
 // {isOpen ? <IoMdArrowDropup /> : <IoMdArrowDropdown />}
 const Navbar = () => {
   const [location, setLocation] = useState({});
-  const [isAuth, setIsAuth] = useState(false);
+  const [isAuth, setIsAuth] = useState(false || localStorage.getItem("auth"));
   const navigate = useNavigate();
   const [count, setCount] = useState(0);
 
@@ -57,7 +57,14 @@ const Navbar = () => {
   return (
     <Box className="nav">
       <Box className="nav_logo">
-        <Image src={logo} alt="logo" />
+        <Image
+          src={logo}
+          alt="logo"
+          onClick={() => {
+            navigate("/");
+          }}
+          style={{ cursor: "pointer" }}
+        />
       </Box>
       <Box className="input_search">
         <Input
@@ -81,13 +88,25 @@ const Navbar = () => {
       <Box className="account_cart">
         <DropdownNav />
         <Box className="wishlist_in">
-          <BsHeart />{" "}
+          <BsHeart
+            onClick={() => navigate("/wishlist")}
+            style={{ cursor: "pointer" }}
+          />{" "}
           <Text className="visible_nav_text_largeScreen">WishList</Text>
         </Box>
 
         <Box className="wishlist_in">
-          <AiOutlineShoppingCart />
-          <Text className="visible_nav_text_largeScreen">Cart</Text>
+          <AiOutlineShoppingCart
+            onClick={() => navigate("/cart")}
+            style={{ cursor: "pointer" }}
+          />
+          <Text
+            onClick={() => navigate("/cart")}
+            style={{ cursor: "pointer" }}
+            className="visible_nav_text_largeScreen"
+          >
+            Cart
+          </Text>
           <Text className="cart_item_count">{count}</Text>
         </Box>
       </Box>

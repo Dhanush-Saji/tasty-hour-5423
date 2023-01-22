@@ -7,17 +7,16 @@ import {
   MenuList,
   Box,
   Text,
-  Button
+  Button,
 } from "@chakra-ui/react";
-import {AiOutlineUser} from 'react-icons/ai'
+import { AiOutlineUser } from "react-icons/ai";
 import { useNavigate } from "react-router";
 
-
 const DropdownNav = () => {
-  const [isAuth, setIsAuth] = useState(false);
+  const [isAuth, setIsAuth] = useState(localStorage.getItem("auth"));
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   return (
     <Box className="account_cart">
       {isAuth ? (
@@ -25,7 +24,6 @@ const DropdownNav = () => {
           <MenuButton
             bgColor="#902735"
             borderradius={5}
-            
             // backgroundcolor="902735"
             padding="1"
             onMouseEnter={onOpen}
@@ -34,7 +32,8 @@ const DropdownNav = () => {
             borderRadius={3}
             p={2}
             _active={{ color: "white" }}
-          ><AiOutlineUser className="visible_nav_text_smallscreen"/>
+          >
+            <AiOutlineUser className="visible_nav_text_smallscreen" />
             <Text className="visible_nav_text_largeScreen">My Account</Text>
           </MenuButton>
           <MenuList onMouseEnter={onOpen} onMouseLeave={onClose}>
@@ -80,13 +79,16 @@ const DropdownNav = () => {
             </MenuItem>
             <MenuItem
               _hover={{ backgroundColor: "#902735", textColor: "white" }}
+              onClick={() => {
+                setIsAuth(localStorage.setItem("auth", false));
+              }}
             >
               Signout
             </MenuItem>
           </MenuList>
         </Menu>
       ) : (
-        <Button onClick={()=> navigate('/phonesignup')}>Register/login</Button>
+        <Button onClick={() => navigate("/phonesignup")}>Register/login</Button>
       )}
     </Box>
   );
