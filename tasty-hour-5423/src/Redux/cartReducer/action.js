@@ -2,32 +2,88 @@ import {
   DELETE_CART_ITEM_REQUEST,
   DELETE_CART_ITEM_SUCCESS,
   DELETE_CART_ITEM__ERROR,
-  UPDATE_CART_ITEM_REQUEST,
-  UPDATE_CART_ITEM_SUCCESS,
-  UPDATE_CART_ITEM__ERROR,
-  ADD_CART_ITEM_REQUEST,
-  ADD_CART_ITEM_SUCCESS,
-  ADD_CART_ITEM__ERROR
+  GET_CART_DATA_ERROR,
+  GET_CART_DATA_REQUEST,
+  GET_CART_DATA_SUCCESS,
+  PLUS_CART_ITEM_REQUEST,
+  PLUS_CART_ITEM_SUCCESS,
+  PLUS_CART_ITEM__ERROR,
+  SETSUBTOTAL,ADD_CART_ITEM_REQUEST,ADD_CART_ITEM_SUCCESS,ADD_CART_ITEM__ERROR
 } from "./actionTypes";
 import axios from "axios";
 
-export const addtocart =(product)=>(dispatch) => {
-  dispatch({ type: ADD_CART_ITEM_REQUEST }).then(
-    dispatch({ type: ADD_CART_ITEM_SUCCESS, payload: { ...product, qty: 1 } })
-  );
-  
-}
+export const getCartDataRequest = () => {
+  return {
+    type: GET_CART_DATA_REQUEST,
+  };
+};
+
+export const getCartDataSuccess = (payload) => {
+  return {
+    type: GET_CART_DATA_SUCCESS,
+    payload: payload,
+  };
+};
+
+export const getCartDataError = () => {
+  return {
+    type: GET_CART_DATA_ERROR,
+  };
+};
+
+//! GET-CART-DATA 👇🚩
+
+export const getdata = () => (dispatch) => {
+  dispatch(getCartDataRequest());
+  return axios
+    .get("https://gold-clever-dhole.cyclic.app/cart")
+    .then((res) => {
+      dispatch(getCartDataSuccess(res.data));
+    })
+    .catch((e) => {
+      dispatch(getCartDataError());
+    });
+};
+
+//! DELETE-CART-ITEM 👇🚩
+
+export const Deletdata = (id) => (dispatch) => {
+  dispatch({ type: DELETE_CART_ITEM_REQUEST });
+  return axios
+    .delete(`https://gold-clever-dhole.cyclic.app/cart/${id}`)
+    .then((res) => {
+      dispatch({ type: DELETE_CART_ITEM_SUCCESS });
+    })
+    .catch((e) => {
+      dispatch({ type: DELETE_CART_ITEM__ERROR });
+    });
+};
+
+//! Pluse-CART-ITEM 👇🚩
+
+export const PluseCartdata = (id, qty, opr) => (dispatch) => {
+  dispatch({ type: PLUS_CART_ITEM_REQUEST });
+  return axios
+    .patch(`https://gold-clever-dhole.cyclic.app/cart/${id}`, {
+      qty: opr == "+" ? qty + 1 : qty - 1,
+    })
+    .then((res) => {
+      dispatch({ type: PLUS_CART_ITEM_SUCCESS });
+    })
+    .catch((e) => {
+      dispatch({ type: PLUS_CART_ITEM__ERROR });
+    });
+};
 
 
-export const deletcartitem=(id)=>(dispatch)=>{
-  dispatch({ type: DELETE_CART_ITEM_REQUEST }).then(
-    dispatch({ type: DELETE_CART_ITEM_SUCCESS, payload:id })
-  );
-}
-
-
-export const updateqty=(id)=>(dispatch)=>{
-  dispatch({ type:  UPDATE_CART_ITEM_REQUEST }).then(
-    dispatch({ type:  UPDATE_CART_ITEM_SUCCESS, payload: id })
-  );
+export const addTocart=(product)=>(dispatch)=>{
+  dispatch({ type: ADD_CART_ITEM_REQUEST });
+  return axios
+    .post(`https://gold-clever-dhole.cyclic.app/cart`,product)
+    .then((res) => {
+      dispatch({ type: ADD_CART_ITEM_SUCCESS });
+    })
+    .catch((e) => {
+      dispatch({ type: ADD_CART_ITEM__ERROR });
+    });
 }
