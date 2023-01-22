@@ -6,7 +6,9 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/autoplay";
 import "swiper/css/scrollbar";
+import { useNavigate } from "react-router";
 const Crousel = ({ arr }) => {
+  const navigate= useNavigate()
   return (
     <div className="App">
       <Swiper
@@ -37,7 +39,7 @@ const Crousel = ({ arr }) => {
           arr?.map((item, index) => {
             return (
               <SwiperSlide key={index}>
-                <img src={item} alt={index} />
+                <img src={item} alt={index} onClick={()=> navigate('/product')} />
               </SwiperSlide>
             );
           })}

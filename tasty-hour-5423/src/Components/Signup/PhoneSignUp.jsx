@@ -7,8 +7,9 @@ import { Button } from "react-bootstrap";
 // import PhoneInput from "react-phone-input-2";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
+import GoogleButton from "react-google-button";
 import { useUserAuth } from "../../Context/AuthContext";
-import { Box, Heading, useToast } from "@chakra-ui/react";
+import { Box, Heading, useToast, Divider } from "@chakra-ui/react";
 import {
   getUserLoginError,
   getUserLoginReq,
@@ -16,6 +17,7 @@ import {
 } from "../../Redux/AuthReducer/action";
 
 import { useDispatch } from "react-redux";
+//phoneNumber , displayName
 
 const PhoneSignUp = () => {
   const [error, setError] = useState("");
@@ -24,7 +26,7 @@ const PhoneSignUp = () => {
   const [otp, setOtp] = useState("");
   const [result, setResult] = useState("");
   const [confirmObj, setConfirmObj] = useState("");
-  const { setUpRecaptha } = useUserAuth();
+  const { setUpRecaptha, googleSignIn, user } = useUserAuth();
   const navigate = useNavigate();
   const toast = useToast();
   const dispatch = useDispatch();
@@ -40,8 +42,10 @@ const PhoneSignUp = () => {
       const response = await setUpRecaptha(number);
       setResult(response);
       console.log(response);
+      console.log("GetOtp", user);
       setFlag(true);
     } catch (err) {
+      dispatch(getUserLoginError());
       setError(err.message);
     }
   };
@@ -53,8 +57,17 @@ const PhoneSignUp = () => {
     try {
       await result.confirm(otp);
       dispatch(getUserLoginSuccess({ user: number, token: otp }));
+      // console.log("VerifyOtp", user);
+      // const userData = {
+      //   user: user.displayName || user.phoneNumber,
+      //   token: user.accessToken,
+      // };
+
+      localStorage.setItem("auth", true);
+
+      // localStorage.setItem("userData", JSON.stringify(userData));
       toast({
-        description: "Login Suucessfull",
+        description: "Login Successfull",
         status: "success",
         position: "top",
         isClosable: true,
@@ -64,6 +77,34 @@ const PhoneSignUp = () => {
     } catch (err) {
       setError(err.message);
       dispatch(getUserLoginError());
+    }
+  };
+
+  const handleGoogleSignIn = async (e) => {
+    dispatch(getUserLoginReq());
+    e.preventDefault();
+    try {
+      await googleSignIn();
+      localStorage.setItem("auth", true);
+      // dispatch(getUserLoginSuccess({ user: number, token: otp }));
+      const userData = {
+        user: user.disdisplayName || user.phoneNumber,
+        token: user.accessToken,
+      };
+
+      localStorage.setItem("userData", JSON.stringify(userData));
+      // console.log("googleSignin", user);
+      toast({
+        description: "Login Successfull",
+        status: "success",
+        position: "top",
+        isClosable: true,
+        duration: 7000,
+      });
+      // console.log(user.displayName || user.phoneNumber)
+      navigate("/");
+    } catch (error) {
+      console.log(error.message);
     }
   };
 
@@ -83,9 +124,10 @@ const PhoneSignUp = () => {
         }}
       >
         <Heading as="h3" size="md">
-          Firebase Phone Auth
+          Phone Auth
         </Heading>
         {error && <Alert variant="danger">{error}</Alert>}
+
         <Form onSubmit={getOtp} style={{ display: !flag ? "block" : "none" }}>
           <Form.Group className="mb-3" controlId="formBasicPhoneNumber">
             <PhoneInput
@@ -97,6 +139,7 @@ const PhoneSignUp = () => {
             />
             <div id="recaptcha-container"></div>
           </Form.Group>
+
           <div className="button-right mb-1">
             <Link to="/">
               <Button variant="secondary">Cancel</Button>
@@ -106,6 +149,22 @@ const PhoneSignUp = () => {
               Send Otp
             </Button>
           </div>
+          <Box
+            style={{
+              display: !flag ? "block" : "none",
+              margin: "2rem",
+              witdh: "90%",
+              margin: "auto",
+            }}
+          >
+            <Divider m={3} />
+            <p style={{ fontSize: "1.2rem", margin: "1rem" }}>OR</p>
+            <GoogleButton
+              className="g-btn"
+              type="dark"
+              onClick={handleGoogleSignIn}
+            />
+          </Box>
         </Form>
 
         <Form onSubmit={verifyOtp} style={{ display: flag ? "block" : "none" }}>
@@ -117,9 +176,12 @@ const PhoneSignUp = () => {
             />
           </Form.Group>
           <div className="button-right">
-            <Link to="/">
+            {/* <Link to="/">
               <Button variant="secondary">Cancel</Button>
-            </Link>
+            </Link> */}
+            <Button variant="secondary" onClick={() => setFlag(false)}>
+              Cancel
+            </Button>
             &nbsp;
             <Button type="submit" variant="primary">
               Verify
