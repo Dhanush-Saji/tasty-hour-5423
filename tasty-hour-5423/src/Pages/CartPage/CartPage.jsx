@@ -4,7 +4,7 @@ import { Singlitem } from "./Singlitem";
 import { Loader } from "./Loader";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {getdata} from "../../Redux/cartReducer/action"
+import {updateqty,deletcartitem} from "../../Redux/cartReducer/action"
 import axios from 'axios'
 
 const CartPage = () => {
@@ -23,13 +23,13 @@ const CartPage = () => {
   
 });
 
- useEffect(()=>{
-  if(data.length===0){
-    dispatch(getdata())
-  }
-  
-
- },[dispatch,data.length])
+//useEffect(()=>{
+// if(data.length===0){
+//   dispatch(getdata())
+// }
+// 
+//
+//},[dispatch,data.length])
 
 
  
