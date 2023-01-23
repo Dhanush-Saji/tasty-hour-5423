@@ -26,11 +26,11 @@ const Sidebar = () => {
       icon: <AiOutlineUser />,
       link: "/",
     },
-    {
-      title: "Orders",
-      icon: <BsClipboardCheck />,
-      link: "/orders",
-    },
+    // {
+    //   title: "Orders",
+    //   icon: <BsClipboardCheck />,
+    //   link: "/orders",
+    // },
     {
       title: "Products",
       icon: <BiBox />,
