@@ -5,32 +5,11 @@ Hello Everyone, We have build a clone of Crftvilla. Currently, we are pursuing t
 
 
 
-> • Deployed Link - [Dermstore] (https://incredible-dango-3c0559.netlify.app/)
+> • Deployed Link - [Craftco] (https://incredible-dango-3c0559.netlify.app/)
 
 *System display size 💻 = 1024 to 1680 pixels*
 <br>
 
-
-# Problem Statement
-
-Our Problem statement is to build a pixel-perfect Craftco website clone. Previously I cloned two websites and some web pages but in this problem, we were supposed to make pages dynamic and responsive too.
-
-## Idea
-
-Since We are pursuing a Full Stack Web Development course at Masai School I was given a project to clone **Dermstore ** which is a skincare and beauty e-commerce site in the United States. Since December 2020, it is a subsidiary of The Hut Group which is a British e-commerce company.  I was given a team of five members including me and the task was to clone the pixel-perfect clone of the website. Let's look at how we designed it 👇. We also Optimized this Whole project Using Plugins too.
-
-## Dermstore Landing Page 👇 💻
-On the Home Page, there are many options like a search bar where users can search products by product name or Brand, then there is also an account option where users can log in or signup and beside it, a cart option is also there and by clicking on the cart option users can see the products which they have added to the cart.
-users can also see new arrivals products and scroll through them just by clicking the buttons which are present on the left and right sides.
-
-## About Project: 
-
-## DermStore Link:- [DermStore](https://www.dermstore.com)
-
-DermStore is a skin care and beauty e-commerce site in the United States.
-It is one of the best places to find some of the highest quality skincare, makeup, haircare, and so much more for both women and men.
-DermStore was founded by dermatologist Craig Kraffert in 1999. In 2012, the company expanded from distributing professional skin care, to consumer cosmetics brands.
-Since December 2020, it is a subsidiary of The Hut Group which is a British e-commerce company.
 
 
 ## Home Page :
@@ -67,13 +46,10 @@ This is the Checkout page, which is the last page of the website. The user will 
 
 
 ### Team Members
+:Anmol jagota
+:Harshal Apsunde
+:Danush- Saji
 
-
-> ### • [Debasis Tripathy](https://github.com/debasistripathy01)
-> ### • [Harshal Anil Apsunde](https://github.com/HARSHAL-AP)
-> ### • [Deepak Soni](https://github.com/Deepak-197)
-> ### • [Devender Yadav](https://github.com/devender0014)
-> ### • [Shagun Sharma](https://github.com/shagun0061)
 
 
 
