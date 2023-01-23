@@ -27,6 +27,7 @@ const getdata = (dispatch) => {
   dispatch(GET_PRODUCT_REQUEST());
   return axios
     .get("https://api.npoint.io/488a1484589210ced2c1")
+    .get("https://zany-deer-life-jacket.cyclic.app/products")
     .then((res) => {
       dispatch(GET_PRODUCT_SUCCESS(res.data));
     })

@@ -5,11 +5,20 @@ import { HiOutlineShoppingBag } from "react-icons/hi";
 import { Link, useNavigate } from "react-router-dom";
 import { addTocart,getdata } from "../../Redux/cartReducer/action";
 import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
 const ProductItems = (products) => {
   const dispatch = useDispatch()
 
   const PostTocart=() => {
     dispatch(addTocart(products))
+   
+    return axios 
+.post(`https://finalcart.onrender.com/cart`,{...products,"qty":1}).then((r)=>{
+  alert("Product added to cart")
+}).then((e)=>{
+    console.log(e)
+})
+
   }
   const navigate = useNavigate();
   return (
@@ -24,7 +33,7 @@ const ProductItems = (products) => {
     >
       <Box width="100%" height="227px">
         <Img
-          src={products.image}
+          src={products.image||products.images}
           height="100%"
           width="100%"
           onClick={() => {

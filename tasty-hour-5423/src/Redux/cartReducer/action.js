@@ -54,7 +54,7 @@ export const getCartDataError = () => {
 export const getdata = () => (dispatch) => {
   dispatch(getCartDataRequest());
   return axios
-    .get("https://gold-clever-dhole.cyclic.app/cart")
+    .get("https://finalcart.onrender.com/cart")
     .then((res) => {
       dispatch(getCartDataSuccess(res.data));
     })
@@ -68,7 +68,7 @@ export const getdata = () => (dispatch) => {
 export const Deletdata = (id) => (dispatch) => {
   dispatch({ type: DELETE_CART_ITEM_REQUEST });
   return axios
-    .delete(`https://gold-clever-dhole.cyclic.app/cart/${id}`)
+    .delete(`https://finalcart.onrender.com/cart/${id}`)
     .then((res) => {
       dispatch({ type: DELETE_CART_ITEM_SUCCESS });
     })
@@ -79,19 +79,7 @@ export const Deletdata = (id) => (dispatch) => {
 
 //! Pluse-CART-ITEM 👇🚩
 
-export const PluseCartdata = (id, qty, opr) => (dispatch) => {
-  dispatch({ type: PLUS_CART_ITEM_REQUEST });
-  return axios
-    .patch(`https://gold-clever-dhole.cyclic.app/cart/${id}`, {
-      qty: opr == "+" ? qty + 1 : qty - 1,
-    })
-    .then((res) => {
-      dispatch({ type: PLUS_CART_ITEM_SUCCESS });
-    })
-    .catch((e) => {
-      dispatch({ type: PLUS_CART_ITEM__ERROR });
-    });
-};
+
 
 
 export const addTocart=(product)=>(dispatch)=>{
@@ -100,4 +88,13 @@ export const addTocart=(product)=>(dispatch)=>{
   dispatch(addDataSuccess(product));
   dispatch(addDataError());
 
+  dispatch({ type: ADD_CART_ITEM_REQUEST });
+  return axios
+    .post(`https://finalcart.onrender.com/cart`,product)
+    .then((res) => {
+      dispatch({ type: ADD_CART_ITEM_SUCCESS });
+    })
+    .catch((e) => {
+      dispatch({ type: ADD_CART_ITEM__ERROR });
+    });
 }
