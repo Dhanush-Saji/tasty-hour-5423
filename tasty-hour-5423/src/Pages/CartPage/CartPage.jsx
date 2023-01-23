@@ -76,4 +76,5 @@ useEffect(()=>{
   );
 };
 
+
 export default CartPage;
