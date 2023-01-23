@@ -28,7 +28,7 @@ export const Singlitem = ({ el }) => {
     <>
       <div className="itembody">
         <div className="imgbody">
-          <img src={el.image} alt="" className="itemimg" />
+          <img src={el.images} alt="" className="itemimg" />
           <div className="titalbody">
             <h1 className="tital2344">{el.name}</h1>
             <p className="removebtn" onClick={Handleremove}>

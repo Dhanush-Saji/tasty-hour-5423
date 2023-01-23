@@ -18,9 +18,9 @@ const SinglePage = ({ id }) => {
   const Productdata = useSelector((items) => items.ProductReducer);
   const toast = useToast();
   const location = useLocation()
-  const {name,image,returnable,price,cancellable,description,return_window,category,discount,popular } = location.state
+  const {name,images,returnable,price,cancellable,description,return_window,category,discount,popular } = location.state
   const [data, setData] = useState({
-    images:image,
+    images,
     title: name,
     price: price,
     description:description,
