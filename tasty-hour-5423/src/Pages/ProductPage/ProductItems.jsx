@@ -7,9 +7,10 @@ import { addTocart,getdata } from "../../Redux/cartReducer/action";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 const ProductItems = (products) => {
-  const dispatch=useDispatch()
+  const dispatch = useDispatch()
 
   const PostTocart=() => {
+    dispatch(addTocart(products))
    
     return axios 
 .post(`https://finalcart.onrender.com/cart`,{...products,"qty":1}).then((r)=>{

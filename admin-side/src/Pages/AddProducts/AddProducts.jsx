@@ -20,7 +20,7 @@ const AddProducts = () => {
     const initialValues={
         name: "",
       category: "",
-      images: "",
+      image: "",
       returnable: false,
       cancellable: false,
       popular:0,
@@ -32,7 +32,7 @@ const AddProducts = () => {
     const productSchema = yup.object().shape({
         name: yup.string().required("required"),
       category: yup.string().required("required"),
-      images: yup.string(),
+      image: yup.string(),
       returnable: yup.boolean().required("required"),
       cancellable: yup.boolean().required("required"),
       returnWindow: yup.number().required("required"),
@@ -72,7 +72,7 @@ const AddProducts = () => {
                      />
                     <TextField fullWidth
                     variant="filled"
-                    type='text' label='Image URL' onBlur={handleBlur} onChange={handleChange} value={values.images} name="images" error={!!touched.images && !!errors.images} helperText={touched.images && errors.images}
+                    type='text' label='Image URL' onBlur={handleBlur} onChange={handleChange} value={values.image} name="image" error={!!touched.image && !!errors.image} helperText={touched.image && errors.image}
                     sx={{gridColumn:"span 2","& .MuiFormLabel-root":{color:'#9b9b9b'},"& .MuiInputBase-input":{backgroundColor:'#9494943b',color:'#d8d8d8',borderRadius:'7px 7px 0px 0px'}}}
                      />
                      <TextField fullWidth

@@ -12,6 +12,24 @@ import {
 } from "./actionTypes";
 import axios from "axios";
 
+export const addDataRequest = () => {
+  return {
+    type: ADD_CART_ITEM_REQUEST,
+  };
+};
+
+export const addDataSuccess = (payload) => {
+  return {
+    type: ADD_CART_ITEM_SUCCESS,
+    payload: payload,
+  };
+};
+
+export const addDataError = () => {
+  return {
+    type: ADD_CART_ITEM__ERROR,
+  };
+};
 export const getCartDataRequest = () => {
   return {
     type: GET_CART_DATA_REQUEST,
@@ -65,6 +83,11 @@ export const Deletdata = (id) => (dispatch) => {
 
 
 export const addTocart=(product)=>(dispatch)=>{
+  // console.log(product);
+  dispatch(addDataRequest());
+  dispatch(addDataSuccess(product));
+  dispatch(addDataError());
+
   dispatch({ type: ADD_CART_ITEM_REQUEST });
   return axios
     .post(`https://finalcart.onrender.com/cart`,product)

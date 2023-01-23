@@ -48,3 +48,16 @@ export const addProduct = (item) => (dispatch) =>{
     // .then((res)=>dispatch(postproductSuccess(res.data))).catch((err)=>dispatch(postproductError()))
     
 }
+export const deleteProduct = (item) => (dispatch) =>{
+    const payload = item
+    // console.log(payload);
+    // try {
+        dispatch(postproductRequest())
+        axios.delete(`http://localhost:8080/products/${payload}`).catch((err)=>dispatch(postproductError()))
+        
+    // } catch (error) {
+    //     dispatch(postproductError())
+    // }
+    // .then((res)=>dispatch(postproductSuccess(res.data))).catch((err)=>dispatch(postproductError()))
+    
+}

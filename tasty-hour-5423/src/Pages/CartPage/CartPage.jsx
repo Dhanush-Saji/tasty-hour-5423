@@ -15,6 +15,7 @@ const CartPage = () => {
 
   const [subtotal, setSubtotal] = useState(0);
  let data = useSelector((store) => store.CartReducer.cartData);
+ const [cartShowdata,setcartShowdata] = useState(data)
 
  let total = 0;
  data.forEach((ele) => {
