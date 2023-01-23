@@ -1,5 +1,5 @@
 # Home page
-![logo](https://github.com/Dhanush-Saji/tasty-hour-5423/blob/main/banner.png)
+![craftco](https://user-images.githubusercontent.com/107473816/214042266-781ed542-2b22-4a19-8585-55f471bc2173.jpg)
 
 ## INTRODUCTION :
 
