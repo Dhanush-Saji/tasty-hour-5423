@@ -26,7 +26,7 @@ const GET_PRODUCT_ERROR = () => {
 const getdata = (dispatch) => {
   dispatch(GET_PRODUCT_REQUEST());
   return axios
-    .get("https://zany-deer-life-jacket.cyclic.app/products")
+    .get("https://api.npoint.io/488a1484589210ced2c1")
     .then((res) => {
       dispatch(GET_PRODUCT_SUCCESS(res.data));
     })
@@ -37,7 +37,7 @@ const getdata = (dispatch) => {
 
 const sortdata=(price)=>(dispatch)=>{
 dispatch(GET_PRODUCT_REQUEST())
-  return axios.get("https://api.npoint.io/1af1902137a1f189bb9b",{ params: { price: price } }).then((res)=>{
+  return axios.get("https://zany-deer-life-jacket.cyclic.app/products",{ params: { price: price } }).then((res)=>{
    
     console.log(res.data);
     dispatch(GET_PRODUCT_SUCCESS(res.data))
@@ -45,7 +45,7 @@ dispatch(GET_PRODUCT_REQUEST())
 }
 const pagination=(data)=>(dispatch)=>{
   dispatch(GET_PRODUCT_REQUEST())
-    return axios.get("http://localhost:8080/products",{ params: { page: data,limit:40 } }).then((res)=>{
+    return axios.get("https://zany-deer-life-jacket.cyclic.app/products",{ params: { page: data,limit:40 } }).then((res)=>{
      
       console.log(res.data);
       dispatch(GET_PRODUCT_SUCCESS(res.data))

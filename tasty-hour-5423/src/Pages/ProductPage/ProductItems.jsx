@@ -3,22 +3,31 @@ import React from "react";
 import Styles from "../../ProductPageCss/Product.module.css";
 import { HiOutlineShoppingBag } from "react-icons/hi";
 import { Link, useNavigate } from "react-router-dom";
-import { addTocart,getdata } from "../../Redux/cartReducer/action";
+import { addTocart, getdata } from "../../Redux/cartReducer/action";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+import { useToast } from "@chakra-ui/react";
 const ProductItems = (products) => {
-  const dispatch=useDispatch()
+  const toast = useToast();
+  const dispatch = useDispatch();
 
-  const PostTocart=() => {
-   
-    return axios 
-.post(`https://finalcart.onrender.com/cart`,{...products,"qty":1}).then((r)=>{
-  alert("Product added to cart")
-}).then((e)=>{
-    console.log(e)
-})
-
-  }
+  const PostTocart = () => {
+    return axios
+      .post(`https://finalcart.onrender.com/cart`, { ...products, qty: 1 })
+      .then((r) => {
+        // alert("Product added to cart")
+        toast({
+          title: "Product added to cart successfully",
+          status: "success",
+          isClosable: true,
+          duration: 5000,
+          position:top
+        });
+      })
+      .then((e) => {
+        console.log(e);
+      });
+  };
   const navigate = useNavigate();
   return (
     <Box
@@ -32,7 +41,7 @@ const ProductItems = (products) => {
     >
       <Box width="100%" height="227px">
         <Img
-          src={products.image||products.images}
+          src={products.image}
           height="100%"
           width="100%"
           onClick={() => {

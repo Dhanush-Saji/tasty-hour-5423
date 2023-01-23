@@ -13,21 +13,37 @@ const postToCart = () => {
   // return axios.post("", payload);
 };
 
+
 const SinglePage = ({ id }) => {
   const [desc, setDescription] = useState(false);
   const Productdata = useSelector((items) => items.ProductReducer);
   const toast = useToast();
   const location = useLocation()
-  const {name,images,returnable,price,cancellable,description,return_window,category,discount,popular } = location.state
+  const {name,image,returnable,price,cancellable,description,return_window,category,discount,popular } = location.state
   const [data, setData] = useState({
-    images,
+    images:image,
     title: name,
     price: price,
     description:description,
     category: category,
     returnable,cancellable,return_window,discount,popular
   });
+  const PostTocart=() => {
+   
+    return axios 
+.post(`https://finalcart.onrender.com/cart`,{...products,"qty":1}).then((r)=>{
+  // alert("Product added to cart")
+  toast({
+    title: "Product added to cart successfully",
+    status: "success",
+    isClosable: true,
+    duration: 5000,
+  });
+}).then((e)=>{
+    console.log(e)
+})
 
+  }
   const handlePost = () => {
     postToCart(data).then((res) => {
       toast({
@@ -107,7 +123,7 @@ const SinglePage = ({ id }) => {
             Inaugural Offer <b>Free Shipping</b>
           </p>
           <button
-            onClick={handlePost}
+            onClick={PostTocart}
             className="space_top_bottom btn cart-btn"
           >
             <span>Add to Cart</span>
