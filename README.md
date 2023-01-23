@@ -46,9 +46,10 @@ This is the Checkout page, which is the last page of the website. The user will 
 
 
 ### Team Members
-:Anmol jagota
-:Harshal Apsunde
-:Danush- Saji
+:Anmol jagota<br>
+:Harshal Apsunde<br>
+:Danush- Saji<br>
+:Rashmiranjan Mahanta<br>
 
 
 
