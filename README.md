@@ -23,57 +23,53 @@ users can also see new arrivals products and scroll through them just by clickin
 
 ### Landing Page
 
+This is the home page of the website which contains different categories of products. And it also contains various crousels containing links to the products page.
+Also some of the adds are present in the last section of the home page, they also lead to products page.
 
 ## SignUp Page/Login:
 
-
-## Login Page Auth Features:
-
+Signup / Login for our clone has been done by using firebase auth. An user can login into our website by using his mobile number. An otp will be sent to his phone through firebase, By which the user can Login. Also user can login using his google id. On successfull login the user gets redirected to the Home page with an successfull alert.
 
 ## Footer/NavBar part :-
 
-
-
-## Category Page  :-
-
-
+Navbar consists of links for various product page, We can routes through different pages using navbar. React-router dom has used to make this possible
 
 
 ### Cart Page :
 
-
+Cart consists of all the data the user has added from products page and the single product page. Here the user can change the quantity for the products and the price data will update accordingly.
 
 ### Payment Page:-
-
 
 This is the Checkout page, which is the last page of the website. The user will get redirected to this page once he clicks on the checkout securely button on the cart page. The user needs to fill his account details and then after clicking on submit my order button.
 
 
 ### Team Members
-:Anmol jagota<br>
-:Harshal Apsunde<br>
-:Danush- Saji<br>
-:Rashmiranjan Mahanta<br>
+* Anmol jagota
+* Harshal Apsunde
+* Danush Saji
+* Rashmiranjan Mahanta
 
 
 
 
 ## Technology Using
-> • React,
-> • React-Redux,
-> • React-Router,
-> • Material UI,
-> • Module CSS,
+> • React
+> • React-Redux
+> • React-Router
+> • Material UI
+> • Module CSS
 > • JSON Server
-> • ExpressJS,
-> • MongoDB,
+> • ExpressJS
+> • MongoDB
 > • NodeJS
 
 ## Tools USing
 > • VS Code
 > • GitHub
-> • Heroku
+> • Cyclic
 > • Git
+> • Postman
 
 
 # Getting Started with Create React App
