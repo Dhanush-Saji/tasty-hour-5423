@@ -3,7 +3,7 @@
 
 ## INTRODUCTION :
 
-Hello Everyone, We have build a clone of Crftvilla. Currently, we are pursuing the Full Stack Web Development course at Masai School. We are in last week of unit 6 which is known by construct week . In this week we build the clone of Dermstore which is given by Masai School . Thanks to Masai School for this opportunity.
+Hello Everyone, We have build a clone of Craftvilla. Currently, we are pursuing the Full Stack Web Development course at Masai School. We are in last week of unit 6 which is known by construct week . In this week we build the clone of Dermstore which is given by Masai School . Thanks to Masai School for this opportunity.
 <br>
 
 
