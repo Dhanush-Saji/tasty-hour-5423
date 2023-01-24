@@ -34,12 +34,20 @@ Signup / Login for our clone has been done by using firebase auth. An user can l
 
 Navbar consists of links for various product page, We can routes through different pages using navbar. React-router dom has used to make this possible
 
+## Products page
 
-### Cart Page :
+Products page consists of all the data comming from the backend server and it show them in a grid format.
+
+## Single Product page
+
+On clicking on any of the products from the product page the website will redirect us to the single product page, where we can see all the details of that specific product. Which includes image, price, title, description etc.
+
+
+## Cart Page :
 
 Cart consists of all the data the user has added from products page and the single product page. Here the user can change the quantity for the products and the price data will update accordingly.
 
-### Payment Page:-
+## Payment Page:-
 
 This is the Checkout page, which is the last page of the website. The user will get redirected to this page once he clicks on the checkout securely button on the cart page. The user needs to fill his account details and then after clicking on submit my order button.
 
