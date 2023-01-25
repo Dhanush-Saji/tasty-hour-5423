@@ -8,26 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { useToast } from "@chakra-ui/react";
 const ProductItems = (products) => {
-  const toast = useToast();
-  const dispatch = useDispatch();
 
-  const PostTocart = () => {
-    return axios
-      .post(`https://finalcart.onrender.com/cart`, { ...products, qty: 1 })
-      .then((r) => {
-        // alert("Product added to cart")
-        toast({
-          title: "Product added to cart successfully",
-          status: "success",
-          isClosable: true,
-          duration: 5000,
-          position:top
-        });
-      })
-      .then((e) => {
-        console.log(e);
-      });
-  };
   const navigate = useNavigate();
   return (
     <Box

@@ -15,7 +15,7 @@ import {HiOutlinePlusSm} from 'react-icons/hi'
 import { useState } from 'react';
 import {useNavigate} from 'react-router-dom'
 import axios from 'axios';
-import { getproductError, getproductRequest, getproductSuccess } from '../../redux/products/Products.action';
+import { deleteProduct, getproductError, getproductRequest, getproductSuccess } from '../../redux/products/Products.action';
 
 
 const Products = () => {
@@ -52,13 +52,13 @@ const Products = () => {
     
   },
   {
-    field: "images",
+    field: "image",
     headerName: "Images",
     flex:1,
     
     
     renderCell: ({ row }) =>
-      <img src={row.images} alt="Product image" />,
+      <img src={row.image} alt="Product image" />,
   },
   {
     field: "name",
@@ -107,10 +107,17 @@ const Products = () => {
       </IconButton>,
   },
 ],[])
-const productDelete = (row) =>{
-  console.log(row);
+const productDelete = async(row) =>{
+  try {
+    
+    dispatch(deleteProduct(row.id))
+    getProducts()
+  } catch (error) {
+    
+  }
 }
 const productUpdate = (row) =>{
+  alert(`This feature isn't available write now`)
   // navigate('/updateproducts')
 }
 useEffect(()=>{

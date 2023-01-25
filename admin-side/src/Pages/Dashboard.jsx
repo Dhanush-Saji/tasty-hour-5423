@@ -3,8 +3,11 @@ import { Flex,Text,Box } from '@chakra-ui/react';
 import {HiUserGroup} from 'react-icons/hi'
 import {GiWallet} from 'react-icons/gi'
 import {TbTrafficLights} from 'react-icons/tb'
+import { useSelector } from 'react-redux';
 
 const Dashboard = () => {
+  const users = useSelector((store)=>store.userData)
+  console.log(users);
   const dashboardCards = [
     {
       title: "Today's traffic",
