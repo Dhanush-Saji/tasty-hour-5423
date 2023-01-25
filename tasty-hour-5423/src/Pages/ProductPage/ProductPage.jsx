@@ -1,6 +1,7 @@
 import React from "react";
 import { Box, SimpleGrid } from "@chakra-ui/react";
 import Styles from "../../ProductPageCss/Product.module.css";
+import './newstyles.css'
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getdata, searchdata, sortdata } from "../../Redux/Product_redux/action";
@@ -45,6 +46,7 @@ dispatch(searchdata(search))
               borderBottom="DDDDDDOundefined"
               textAlign="left"
               padding="15px 10px 15px 10px"
+              className="PRODUCT__FILTER__OPTIONS"
             >
               Filter by
             </Box>
@@ -60,6 +62,7 @@ dispatch(searchdata(search))
           padding="7px 7px 4px 35px"
           lineHeight="25px"
           fontWeight="450"
+          className="PRODUCT__FILTER__OPTIONS"
           >
           <span
             style={{ marginLeft: "10px" }}
@@ -72,7 +75,7 @@ dispatch(searchdata(search))
             style={{ marginLeft: "10px" }}
             onClick={() => dispatch(sortdata("price_low_to_high"))}
           >
-            Price:<span>Low to Hight</span>{" "}
+            Price:<span>Low to High</span>{" "}
             <span style={{ marginLeft: "10px" }}>|</span>
           </span>
           <span
@@ -89,11 +92,9 @@ dispatch(searchdata(search))
           <span style={{ marginLeft: "10px" }}>New Arrivals</span>
         </Box>
         <Box
-          width="84%"
-          height="auto"
-          float="left"
+          classname="PRODUCT__CONTENT"
         >
-          <SimpleGrid columns={[2, 4, 4]}>
+          <Box className="prod_grid">
             {Productdata.data &&
               Productdata.data.length > 0 &&
               Productdata.data.map(
@@ -101,7 +102,7 @@ dispatch(searchdata(search))
                 i < 40 && <ProductItems {...items} key={items._id} />
                 )}
                
-          </SimpleGrid>
+          </Box>
           <Box  width="100%" display="flex"  justifyContent="center" alignItems="center" marginTop="80px">
         <Pagination/>
         </Box>

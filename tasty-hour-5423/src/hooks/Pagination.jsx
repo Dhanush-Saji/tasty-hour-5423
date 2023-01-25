@@ -10,7 +10,15 @@ const Pagination = () => {
     dispatch(pagination(page));
   }
   return (
-    <div>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        with: "90%",
+        margin: "auto",
+      }}
+    >
       <nav aria-label="...">
         <ul class="pagination">
           <li class="page-item disabled">
