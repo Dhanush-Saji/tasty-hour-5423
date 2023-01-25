@@ -12,7 +12,8 @@ import {
   Text,
   useDisclosure,
   IconButton,
-  Button
+  Button,
+  useToast,
 } from "@chakra-ui/react";
 import Styles from "../../ProductPageCss/Product.module.css";
 import "./newstyles.css";
@@ -76,7 +77,7 @@ const SmallPage = () => {
   const Productdata = useSelector((items) => items.ProductReducer);
   const { isOpen, onOpen, onClose } = useDisclosure();
   console.log(Productdata);
-  const navigate= useNavigate()
+  const navigate = useNavigate();
   const [search, setSeacrh] = useState("");
   useEffect(() => {
     dispatch(getdata);
@@ -104,7 +105,7 @@ const SmallPage = () => {
               </Text>
               <Text className="gold">₹ {el.price}</Text>
               <Button
-                onClick={()=>PostTocart(el)}
+                onClick={() => PostTocart(el)}
                 style={{
                   color: "white",
                   background: "#902735",
