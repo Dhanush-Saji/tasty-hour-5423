@@ -36,6 +36,7 @@ import {
   FiMenu,
   FiFilter,
 } from "react-icons/fi";
+import { useNavigate } from "react-router-dom";
 
 const LinkItems = [
   { name: "Home", icon: FiHome },
@@ -45,9 +46,9 @@ const LinkItems = [
   { name: "Settings", icon: FiSettings },
 ];
 
-const PostTocart = () => {
+const PostTocart = (el) => {
   return axios
-    .post(`https://finalcart.onrender.com/cart`, { ...products, qty: 1 })
+    .post(`https://finalcart.onrender.com/cart`, { ...el, qty: 1 })
     .then((r) => {
       // alert("Product added to cart")
       toast({
@@ -55,7 +56,7 @@ const PostTocart = () => {
         status: "success",
         isClosable: true,
         duration: 5000,
-        position: top,
+        position: "top",
       });
     })
     .catch((err) => {
@@ -64,7 +65,7 @@ const PostTocart = () => {
         status: "error",
         isClosable: true,
         duration: 5000,
-        position: top,
+        position: "top",
       });
     });
 };
@@ -74,6 +75,7 @@ const SmallPage = () => {
   const Productdata = useSelector((items) => items.ProductReducer);
   const { isOpen, onOpen, onClose } = useDisclosure();
   console.log(Productdata);
+  const navigate= useNavigate()
   const [search, setSeacrh] = useState("");
   useEffect(() => {
     dispatch(getdata);
@@ -93,7 +95,7 @@ const SmallPage = () => {
               <img
                 src={el.image}
                 onClick={() => {
-                  navigate("/singlepage", { state: products });
+                  navigate("/singlepage", { state: el });
                 }}
               />
               <Text>
@@ -101,7 +103,7 @@ const SmallPage = () => {
               </Text>
               <Text className="gold">₹ {el.price}</Text>
               <Button
-                onClick={PostTocart}
+                onClick={()=>PostTocart(el)}
                 style={{
                   color: "white",
                   background: "#902735",
