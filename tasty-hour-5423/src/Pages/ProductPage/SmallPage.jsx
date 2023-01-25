@@ -37,6 +37,7 @@ import {
   FiFilter,
 } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const LinkItems = [
   { name: "Home", icon: FiHome },
