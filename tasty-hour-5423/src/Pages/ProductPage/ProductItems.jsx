@@ -3,23 +3,12 @@ import React from "react";
 import Styles from "../../ProductPageCss/Product.module.css";
 import { HiOutlineShoppingBag } from "react-icons/hi";
 import { Link, useNavigate } from "react-router-dom";
-import { addTocart,getdata } from "../../Redux/cartReducer/action";
+import { addTocart, getdata } from "../../Redux/cartReducer/action";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+import { useToast } from "@chakra-ui/react";
 const ProductItems = (products) => {
-  const dispatch = useDispatch()
 
-  const PostTocart=() => {
-    dispatch(addTocart(products))
-   
-    return axios 
-.post(`https://finalcart.onrender.com/cart`,{...products,"qty":1}).then((r)=>{
-  alert("Product added to cart")
-}).then((e)=>{
-    console.log(e)
-})
-
-  }
   const navigate = useNavigate();
   return (
     <Box
@@ -33,9 +22,8 @@ const ProductItems = (products) => {
     >
       <Box width="100%" height="227px">
         <Img
-          src={products.image||products.images}
-          height="100%"
-          width="100%"
+          src={products.image}
+          
           onClick={() => {
             navigate("/singlepage", { state: products });
           }}
@@ -43,8 +31,8 @@ const ProductItems = (products) => {
         <Box fontSize="20px" className={Styles.name}>
           {products.name}
         </Box>
-        <Box fontSize="25px" paddingTop="13px" color="#fba937!important">
-          {products.price}
+        <Box fontSize="25px" mb='0.5rem' paddingTop="13px" color="#fba937!important">
+        ₹ {products.price}
         </Box>
         <Box>
           <Button className={Styles.button} onClick={PostTocart}>

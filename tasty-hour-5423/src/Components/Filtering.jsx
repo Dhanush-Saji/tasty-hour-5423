@@ -9,9 +9,10 @@ import {
 import data from "../Data/db.json";
 import React from "react";
 import Custom from "./Custom";
+import '../Pages/ProductPage/newstyles.css'
 const Filtering = () => {
  return (
-    <div>
+    <div className="PRODUCT__FILTER__OPTIONS">
       <Accordion defaultIndex={[0]} allowMultiple>
         {data.Prices.map((items, i) =>
         i < 7 && (

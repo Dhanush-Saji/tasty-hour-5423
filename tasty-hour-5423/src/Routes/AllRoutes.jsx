@@ -9,12 +9,14 @@ import SinglePage from "./../Pages/SinglePage/SinglePage";
 // import Signup from "../Components/Signup/Signup";
 // import Login from "../Components/Login/Login";
 import PhoneSignUp from "../Components/Signup/PhoneSignUp";
+import NewProductPage from "../Pages/ProductPage/NewProductPage";
 const AllRoutes = () => {
   return (
     <>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        {/* <Route path="/product" element={<ProductPage />} />
+        {/* <Route path="/product" element={<ProductPage />} /> */}
+        <Route path="/product2" element={<NewProductPage />} />
         <Route path="/singlepage" element={<SinglePage />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/checkout" element={<CheckoutPage />} />

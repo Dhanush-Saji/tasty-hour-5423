@@ -1,4 +1,4 @@
-import React, { useState ,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import "./Chekout.css";
 import { BsCreditCardFill } from "react-icons/bs";
 import {
@@ -8,6 +8,7 @@ import {
   AccordionPanel,
   AccordionIcon,
   Box,
+  useToast,
 } from "@chakra-ui/react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,41 +17,41 @@ import { getdata } from "../../Redux/cartReducer/action";
 import { Fisitem } from "./Fisitem";
 const CheckoutPage = () => {
   const [poup, Setpopup] = useState(false);
-  const navigate=useNavigate()
-  const dispatch=useDispatch()
- 
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const toast = useToast();
+
   const [value, setValue] = useState("");
- 
-   const [subtotal, setSubtotal] = useState(0);
+
+  const [subtotal, setSubtotal] = useState(0);
   let data = useSelector((store) => store.CartReducer.cartData);
- 
+
   let total = 0;
- data.forEach((ele) => {
+  data.forEach((ele) => {
+    total += ele.price * ele.qty;
+  });
 
-    total += (ele.price*ele.qty) ;
-  
-});
-
- 
- useEffect(()=>{
-  if(data.length===0){
-    dispatch(getdata())
-  }
-  
- 
- },[dispatch,data.length])
- 
- 
+  useEffect(() => {
+    if (data.length === 0) {
+      dispatch(getdata());
+    }
+  }, [dispatch, data.length]);
 
   const Toglepoup = () => {
     Setpopup(!poup);
   };
 
-
-  const FinalALert=()=>{
-    alert("Order Sucsessfull....")
-    navigate("/")
-  }
+  const FinalALert = () => {
+    alert("Order Sucsessfull....");
+    // toast({
+    //   title: "Order placed successfully",
+    //   status: "success",
+    //   isClosable: true,
+    //   duration: 5000,
+    //   position: top,
+    // });
+    navigate("/");
+  };
   return (
     <div className="chceckout_body">
       <div className="adresscontaner">
@@ -97,7 +98,7 @@ const CheckoutPage = () => {
         <p className="stpetseterdjfgu">Step 1</p>
         <h1 className="contenerheading234">
           Payment
-          <span className="totalpriceinfo3098">| You Pay :₹ { total}</span>
+          <span className="totalpriceinfo3098">| You Pay :₹ {total}</span>
         </h1>
         <h2 className="payopheadi34">Payment Option</h2>
         <Accordion>
@@ -120,7 +121,9 @@ const CheckoutPage = () => {
                 <input type="text" placeholder="Year" />
                 <input type="text" placeholder="CVV" />
               </div>
-              <div className="paymentsubmitbtn979" onClick={FinalALert}>PAY SECURELY ₹{ total}</div>
+              <div className="paymentsubmitbtn979" onClick={FinalALert}>
+                PAY SECURELY ₹{total}
+              </div>
             </AccordionPanel>
           </AccordionItem>
 
@@ -143,7 +146,9 @@ const CheckoutPage = () => {
                 <input type="text" placeholder="Year" />
                 <input type="text" placeholder="CVV" />
               </div>
-              <div className="paymentsubmitbtn979" onClick={FinalALert}>PAY SECURELY ₹{ total}</div>
+              <div className="paymentsubmitbtn979" onClick={FinalALert}>
+                PAY SECURELY ₹{total}
+              </div>
             </AccordionPanel>
           </AccordionItem>
 
@@ -160,19 +165,23 @@ const CheckoutPage = () => {
                 We will redirect to your bank website to authorize the payment.
                 Your order will get confirmed post paymen
               </p>
-              <select placeholder="Select Your bank" className="paymentselecttag234">
+              <select
+                placeholder="Select Your bank"
+                className="paymentselecttag234"
+              >
                 <option value="">Select Your bank</option>
                 <option value="SBI">State bank of India</option>
                 <option value="SBI">Central bank of India</option>
 
                 <option value="SBI">Bank of Badoda</option>
                 <option value="SBI">ICICI</option>
-                <option value="SBI">Bank of Maharashtra</option>  
+                <option value="SBI">Bank of Maharashtra</option>
                 <option value="SBI">Kotak Mahindra</option>
                 <option value="SBI">AXIS Bank</option>
-
               </select>
-              <div className="paymentsubmitbtn979" onClick={FinalALert}>PAY SECURELY ₹{ total}</div>
+              <div className="paymentsubmitbtn979" onClick={FinalALert}>
+                PAY SECURELY ₹{total}
+              </div>
             </AccordionPanel>
           </AccordionItem>
           <AccordionItem className="dropdwnmodle098">
@@ -184,9 +193,11 @@ const CheckoutPage = () => {
             </AccordionButton>
 
             <AccordionPanel>
-            <p className="formlabel">Enter UPI ID</p>
+              <p className="formlabel">Enter UPI ID</p>
               <input placeholder="yourname@upi" className="paymentforminput3" />
-              <div className="paymentsubmitbtn979" onClick={FinalALert}>PAY SECURELY ₹{ total}</div>
+              <div className="paymentsubmitbtn979" onClick={FinalALert}>
+                PAY SECURELY ₹{total}
+              </div>
             </AccordionPanel>
           </AccordionItem>
           <AccordionItem className="dropdwnmodle098">
@@ -198,22 +209,24 @@ const CheckoutPage = () => {
             </AccordionButton>
 
             <AccordionPanel>
-            <p>
-                Select Your Wallet
-              </p>
-              <select placeholder="Select Your bank" className="paymentselecttag234">
+              <p>Select Your Wallet</p>
+              <select
+                placeholder="Select Your bank"
+                className="paymentselecttag234"
+              >
                 <option value="">Select Your Wallet</option>
                 <option value="SBI">Airtel Payment Bank</option>
                 <option value="SBI">Amazon Pay</option>
 
                 <option value="SBI">Phone Pay</option>
                 <option value="SBI">ICICI</option>
-                <option value="SBI">Google Pay</option>  
+                <option value="SBI">Google Pay</option>
                 <option value="SBI">Paytm</option>
                 <option value="SBI">Freecharge</option>
-
               </select>
-              <div className="paymentsubmitbtn979" onClick={FinalALert}>PAY SECURELY ₹{ total}</div>
+              <div className="paymentsubmitbtn979" onClick={FinalALert}>
+                PAY SECURELY ₹{total}
+              </div>
             </AccordionPanel>
           </AccordionItem>
           <AccordionItem className="dropdwnmodle098">
@@ -228,22 +241,33 @@ const CheckoutPage = () => {
               <div>
                 <p>Please pay a total amount of ₹ {total} upon delivery</p>
               </div>
-              <div className="paymentsubmitbtn979" onClick={FinalALert}>PLACE ORDER</div>
+              <div className="paymentsubmitbtn979" onClick={FinalALert}>
+                PLACE ORDER
+              </div>
             </AccordionPanel>
           </AccordionItem>
         </Accordion>
       </div>
       <div className="cartitemcontaner">
-      <p className="stpetseterdjfgu">Order Details</p>
-        <div className="allorderDetails"> 
-        {data.length>0&&data.map((item)=>{
-        return <Fisitem key={item._id} el={item}/>
-       })}
-        
+        <p className="stpetseterdjfgu">Order Details</p>
+        <div className="allorderDetails">
+          {data.length > 0 &&
+            data.map((item) => {
+              return <Fisitem key={item._id} el={item} />;
+            })}
         </div>
-       <div className="filkop098"><h1>Price</h1><p>{total}</p></div>
-       <div className="filkop098"><h1>Shiping</h1><p>Free*</p></div>
-       <div className="finalpoiunhy"><h1 className="he764">Total Payable</h1><p>{total}</p></div>
+        <div className="filkop098">
+          <h1>Price</h1>
+          <p>{total}</p>
+        </div>
+        <div className="filkop098">
+          <h1>Shiping</h1>
+          <p>Free*</p>
+        </div>
+        <div className="finalpoiunhy">
+          <h1 className="he764">Total Payable</h1>
+          <p>{total}</p>
+        </div>
       </div>
     </div>
   );
