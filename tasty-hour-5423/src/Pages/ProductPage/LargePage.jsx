@@ -8,6 +8,7 @@ import {
   Text,
   Heading,
   Checkbox,
+  useToast
 } from "@chakra-ui/react";
 import Styles from "../../ProductPageCss/Product.module.css";
 import "./newstyles.css";
@@ -24,35 +25,14 @@ import Pagination from "../../hooks/Pagination";
 
 import { useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
-const PostTocart = () => {
-  return axios
-    .post(`https://finalcart.onrender.com/cart`, { ...products, qty: 1 })
-    .then((r) => {
-      // alert("Product added to cart")
-      toast({
-        title: "Product added to cart successfully",
-        status: "success",
-        isClosable: true,
-        duration: 5000,
-        position: top,
-      });
-    })
-    .catch((err) => {
-      toast({
-        title: "Something went Wrong",
-        status: "error",
-        isClosable: true,
-        duration: 5000,
-        position: top,
-      });
-    });
-};
+
 
 const LargePage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const Productdata = useSelector((items) => items.ProductReducer);
-  console.log(Productdata);
+  const toast = useToast()
+//   console.log(Productdata);
   const [search, setSeacrh] = useState("");
   useEffect(() => {
     dispatch(getdata);
@@ -62,6 +42,30 @@ const LargePage = () => {
     setSeacrh({ ...search, name: value });
     dispatch(searchdata(search));
   }
+
+  const PostTocart = (el) => {
+    return axios
+      .post(`https://finalcart.onrender.com/cart`, { ...el, qty: 1 })
+      .then((r) => {
+        // alert("Product added to cart")
+        toast({
+          title: "Product added to cart successfully",
+          status: "success",
+          isClosable: true,
+          duration: 5000,
+          position: top,
+        });
+      })
+      .catch((err) => {
+        toast({
+          title: "Something went Wrong",
+          status: "error",
+          isClosable: true,
+          duration: 5000,
+          position: top,
+        });
+      });
+  };
 
   return (
     <>
@@ -98,7 +102,7 @@ const LargePage = () => {
                 <img
                   src={el.image}
                   onClick={() => {
-                    navigate("/singlepage", { state: products });
+                    navigate("/singlepage", { state: el });
                   }}
                 />
                 <Text>
@@ -106,7 +110,7 @@ const LargePage = () => {
                 </Text>
                 <Text className="gold">₹ {el.price}</Text>
                 <Button
-                  onClick={PostTocart}
+                  onClick={()=> PostTocart(el)}
                   style={{
                     color: "white",
                     background: "#902735",

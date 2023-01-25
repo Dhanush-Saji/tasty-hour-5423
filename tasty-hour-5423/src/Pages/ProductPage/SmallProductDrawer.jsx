@@ -13,6 +13,7 @@ import {
   useDisclosure,
   BoxProps,
   FlexProps,
+  useToast
 } from "@chakra-ui/react";
 import Styles from "../../ProductPageCss/Product.module.css";
 import "./newstyles.css";
@@ -49,7 +50,7 @@ export default function SmallProductDrawer({ children }) {
   const dispatch = useDispatch();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const Productdata = useSelector((items) => items.ProductReducer);
-  console.log(Productdata);
+  // console.log(Productdata);
   const [search, setSeacrh] = useState("");
   useEffect(() => {
     dispatch(getdata);

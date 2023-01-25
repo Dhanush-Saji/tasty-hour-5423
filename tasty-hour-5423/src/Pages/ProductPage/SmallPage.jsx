@@ -12,7 +12,8 @@ import {
   Text,
   useDisclosure,
   IconButton,
-  Button
+  Button,
+  useToast,
 } from "@chakra-ui/react";
 import Styles from "../../ProductPageCss/Product.module.css";
 import "./newstyles.css";
@@ -36,6 +37,7 @@ import {
   FiMenu,
   FiFilter,
 } from "react-icons/fi";
+import { useNavigate } from "react-router-dom";
 
 const LinkItems = [
   { name: "Home", icon: FiHome },
@@ -45,9 +47,10 @@ const LinkItems = [
   { name: "Settings", icon: FiSettings },
 ];
 
-const PostTocart = () => {
+const PostTocart = (el) => {
+  const toast= useToast()
   return axios
-    .post(`https://finalcart.onrender.com/cart`, { ...products, qty: 1 })
+    .post(`https://finalcart.onrender.com/cart`, { ...el, qty: 1 })
     .then((r) => {
       // alert("Product added to cart")
       toast({
@@ -55,7 +58,7 @@ const PostTocart = () => {
         status: "success",
         isClosable: true,
         duration: 5000,
-        position: top,
+        position: "top",
       });
     })
     .catch((err) => {
@@ -64,7 +67,7 @@ const PostTocart = () => {
         status: "error",
         isClosable: true,
         duration: 5000,
-        position: top,
+        position: "top",
       });
     });
 };
@@ -73,7 +76,8 @@ const SmallPage = () => {
   const dispatch = useDispatch();
   const Productdata = useSelector((items) => items.ProductReducer);
   const { isOpen, onOpen, onClose } = useDisclosure();
-  console.log(Productdata);
+  const navigate= useNavigate()
+  // console.log(Productdata);
   const [search, setSeacrh] = useState("");
   useEffect(() => {
     dispatch(getdata);
@@ -93,7 +97,7 @@ const SmallPage = () => {
               <img
                 src={el.image}
                 onClick={() => {
-                  navigate("/singlepage", { state: products });
+                  navigate("/singlepage", { state: el });
                 }}
               />
               <Text>
@@ -101,7 +105,7 @@ const SmallPage = () => {
               </Text>
               <Text className="gold">₹ {el.price}</Text>
               <Button
-                onClick={PostTocart}
+                onClick={() => PostTocart(el)}
                 style={{
                   color: "white",
                   background: "#902735",
