@@ -9,6 +9,7 @@ import {
   Text,
   Heading,
   Checkbox,
+  useToast
 } from "@chakra-ui/react";
 import Styles from "../../ProductPageCss/Product.module.css";
 import "./newstyles.css";
