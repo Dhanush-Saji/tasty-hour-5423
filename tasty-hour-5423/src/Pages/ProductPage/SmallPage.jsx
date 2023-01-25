@@ -39,6 +39,9 @@ import {
 } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 
+import axios from "axios";
+
+
 const LinkItems = [
   { name: "Home", icon: FiHome },
   { name: "Trending", icon: FiTrendingUp },
@@ -48,7 +51,9 @@ const LinkItems = [
 ];
 
 const PostTocart = (el) => {
+
   const toast= useToast()
+
   return axios
     .post(`https://finalcart.onrender.com/cart`, { ...el, qty: 1 })
     .then((r) => {
@@ -76,8 +81,12 @@ const SmallPage = () => {
   const dispatch = useDispatch();
   const Productdata = useSelector((items) => items.ProductReducer);
   const { isOpen, onOpen, onClose } = useDisclosure();
+
   const navigate= useNavigate()
   // console.log(Productdata);
+
+
+
   const [search, setSeacrh] = useState("");
   useEffect(() => {
     dispatch(getdata);

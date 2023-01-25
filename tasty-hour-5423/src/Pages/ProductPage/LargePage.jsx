@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import {
   Box,
   SimpleGrid,
@@ -26,12 +27,38 @@ import Pagination from "../../hooks/Pagination";
 import { useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
 
+const PostTocart = (el) => {
+  return axios
+    .post(`https://finalcart.onrender.com/cart`, { ...el, qty: 1 })
+    .then((r) => {
+      // alert("Product added to cart")
+      toast({
+        title: "Product added to cart successfully",
+        status: "success",
+        isClosable: true,
+        duration: 5000,
+        position: "top",
+      });
+    })
+    .catch((err) => {
+      toast({
+        title: "Something went Wrong",
+        status: "error",
+        isClosable: true,
+        duration: 5000,
+        position: "top",
+      });
+    });
+};
+
 
 const LargePage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const Productdata = useSelector((items) => items.ProductReducer);
+
   const toast = useToast()
+
 //   console.log(Productdata);
   const [search, setSeacrh] = useState("");
   useEffect(() => {
@@ -125,8 +152,7 @@ const LargePage = () => {
       </Box>
     </Box>
     <Pagination  />
-    </>
-    
+    </>   
   );
 };
 
