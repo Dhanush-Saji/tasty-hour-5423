@@ -42,8 +42,7 @@ const ProductItems = (products) => {
       <Box width="100%" height="227px">
         <Img
           src={products.image}
-          height="100%"
-          width="100%"
+          
           onClick={() => {
             navigate("/singlepage", { state: products });
           }}
@@ -51,8 +50,8 @@ const ProductItems = (products) => {
         <Box fontSize="20px" className={Styles.name}>
           {products.name}
         </Box>
-        <Box fontSize="25px" paddingTop="13px" color="#fba937!important">
-          {products.price}
+        <Box fontSize="25px" mb='0.5rem' paddingTop="13px" color="#fba937!important">
+        ₹ {products.price}
         </Box>
         <Box>
           <Button className={Styles.button} onClick={PostTocart}>
