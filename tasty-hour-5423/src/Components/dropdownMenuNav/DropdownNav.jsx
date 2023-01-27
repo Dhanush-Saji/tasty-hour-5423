@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   useDisclosure,
   MenuItem,
@@ -8,18 +8,38 @@ import {
   Box,
   Text,
   Button,
+  Show,
+  Hide
 } from "@chakra-ui/react";
 import { AiOutlineUser } from "react-icons/ai";
 import { useNavigate } from "react-router";
-
+import { userAuthContext } from "../../Context/AuthContext";
+import { useUserAuth } from "../../Context/AuthContext";
+import {CiLogin} from 'react-icons/ci'
 const DropdownNav = () => {
   const [isAuth, setIsAuth] = useState(localStorage.getItem("auth"));
   const { isOpen, onOpen, onClose } = useDisclosure();
+  // userAuthContext
+  const [val, setVal] = useState("");
+  const { user, logOut } = useUserAuth();
+
+  const handleSignOut = async () => {
+    try {
+      await logOut();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    setVal(user?.displayName || "");
+  }, [user, isAuth, val]);
+  console.log("user from dropdown", val);
 
   const navigate = useNavigate();
   return (
     <Box className="account_cart">
-      {isAuth ? (
+      {user ? (
         <Menu isOpen={isOpen}>
           <MenuButton
             bgColor="#902735"
@@ -34,14 +54,17 @@ const DropdownNav = () => {
             _active={{ color: "white" }}
           >
             <AiOutlineUser className="visible_nav_text_smallscreen" />
-            <Text className="visible_nav_text_largeScreen">My Account</Text>
+            <Text className="visible_nav_text_largeScreen">
+              {val === undefined ? <Text>My Account</Text> : val}
+            </Text>
           </MenuButton>
           <MenuList onMouseEnter={onOpen} onMouseLeave={onClose}>
-            <MenuItem
+          <MenuItem
               _hover={{ backgroundColor: "#902735", textColor: "white" }}
             >
-              My Account
+              <Show below='md'>{val === undefined ? <Text>My Account</Text> : val}</Show>
             </MenuItem>
+          
             <MenuItem
               _hover={{ backgroundColor: "#902735", textColor: "white" }}
             >
@@ -81,6 +104,7 @@ const DropdownNav = () => {
               _hover={{ backgroundColor: "#902735", textColor: "white" }}
               onClick={() => {
                 setIsAuth(localStorage.setItem("auth", false));
+                handleSignOut();
               }}
             >
               Signout
@@ -88,7 +112,10 @@ const DropdownNav = () => {
           </MenuList>
         </Menu>
       ) : (
-        <Button onClick={() => navigate("/phonesignup")}>Register/login</Button>
+        <Button onClick={() => navigate("/phonesignup")}>
+          <Hide below="md">Register/Login</Hide>
+          <Show below='md'><CiLogin/></Show>
+        </Button>
       )}
     </Box>
   );
