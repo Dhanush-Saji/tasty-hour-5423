@@ -55,7 +55,7 @@ const Navbar = () => {
   // console.log(location);
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
-    <Box className="nav">
+    <Box className="nav" w='100%'>
       <Box className="nav_logo">
         <Image
           src={logo}

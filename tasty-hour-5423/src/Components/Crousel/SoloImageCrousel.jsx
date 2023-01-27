@@ -27,7 +27,7 @@ const SoloImageCrousel = ({ arr }) => {
           arr?.map((item, index) => {
             return (
               <SwiperSlide key={index}>
-                <img style={{cursor:'pointer'}} src={item} alt={index}  onClick={()=> Navigate('/product')}  />
+                <img style={{cursor:'pointer'}} src={item} alt={index}  onClick={()=> Navigate('/products')}  />
               </SwiperSlide>
             );
           })}

@@ -12,7 +12,8 @@ import {
   Text,
   useDisclosure,
   IconButton,
-  Button
+  Button,
+  Toast
 } from "@chakra-ui/react";
 import Styles from "../../ProductPageCss/Product.module.css";
 import "./newstyles.css";
@@ -37,6 +38,7 @@ import {
   FiFilter,
 } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const LinkItems = [
   { name: "Home", icon: FiHome },
@@ -51,7 +53,7 @@ const PostTocart = (el) => {
     .post(`https://finalcart.onrender.com/cart`, { ...el, qty: 1 })
     .then((r) => {
       // alert("Product added to cart")
-      toast({
+      Toast({
         title: "Product added to cart successfully",
         status: "success",
         isClosable: true,
@@ -60,7 +62,7 @@ const PostTocart = (el) => {
       });
     })
     .catch((err) => {
-      toast({
+      Toast({
         title: "Something went Wrong",
         status: "error",
         isClosable: true,
