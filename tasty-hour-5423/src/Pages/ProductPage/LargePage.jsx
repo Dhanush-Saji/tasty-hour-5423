@@ -6,7 +6,7 @@ import {
   HStack,
   VStack,
   Text,
-  Heading,
+  Heading,toast,
   Checkbox,
 } from "@chakra-ui/react";
 import Styles from "../../ProductPageCss/Product.module.css";

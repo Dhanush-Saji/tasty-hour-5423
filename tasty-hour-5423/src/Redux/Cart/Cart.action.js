@@ -16,3 +16,11 @@ export const addtocartError = () =>{
         type:ADD_CART_ERROR
     }
 }
+
+export const addProductToCart = (item) => (dispatch) =>{
+    console.log(item);
+    dispatch(addtocartRequest())
+    dispatch(addtocartSuccess(item))
+
+    
+}
