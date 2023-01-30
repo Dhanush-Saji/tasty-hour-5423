@@ -13,7 +13,7 @@ import {
   useDisclosure,
   IconButton,
   Button,
-  Toast
+  useToast,
 } from "@chakra-ui/react";
 import Styles from "../../ProductPageCss/Product.module.css";
 import "./newstyles.css";
@@ -40,6 +40,9 @@ import {
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+import axios from "axios";
+
+
 const LinkItems = [
   { name: "Home", icon: FiHome },
   { name: "Trending", icon: FiTrendingUp },
@@ -49,6 +52,9 @@ const LinkItems = [
 ];
 
 const PostTocart = (el) => {
+
+  const toast= useToast()
+
   return axios
     .post(`https://finalcart.onrender.com/cart`, { ...el, qty: 1 })
     .then((r) => {
@@ -76,8 +82,12 @@ const SmallPage = () => {
   const dispatch = useDispatch();
   const Productdata = useSelector((items) => items.ProductReducer);
   const { isOpen, onOpen, onClose } = useDisclosure();
-  console.log(Productdata);
+
   const navigate= useNavigate()
+  // console.log(Productdata);
+
+
+
   const [search, setSeacrh] = useState("");
   useEffect(() => {
     dispatch(getdata);
@@ -105,7 +115,7 @@ const SmallPage = () => {
               </Text>
               <Text className="gold">₹ {el.price}</Text>
               <Button
-                onClick={()=>PostTocart(el)}
+                onClick={() => PostTocart(el)}
                 style={{
                   color: "white",
                   background: "#902735",

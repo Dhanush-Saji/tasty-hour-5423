@@ -10,6 +10,7 @@ import { BsHeart } from "react-icons/bs";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import SmallScreenSearchModal from "../smallscreenseacrhmodal/SmallScreenSearchModal";
 import axios from "axios";
+import { useUserAuth } from "../../Context/AuthContext";
 
 import {
   useDisclosure,
@@ -23,7 +24,7 @@ import { useNavigate } from "react-router-dom";
 
 import locationFn from "../../API/location";
 import DropdownNav from "../dropdownMenuNav/DropdownNav";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const getQueryData = (payload) => {
   // return axios.get(url, payload);
@@ -35,9 +36,12 @@ const Navbar = () => {
   const [isAuth, setIsAuth] = useState(false || localStorage.getItem("auth"));
   const navigate = useNavigate();
   const [count, setCount] = useState(0);
-
+  const { user } = useUserAuth();
+  const dispatch = useDispatch();
   const [query, setQuery] = useState("");
 
+  // let data = useSelector((store) => store.CartReducer.cartData);
+  // setCount(data.length);
   const handleQuerry = (e) => {
     setQuery(e);
     console.log(query);
@@ -48,6 +52,7 @@ const Navbar = () => {
   };
 
   useEffect(() => {
+    // const val= user?.displayName || ""
     locationFn().then((res) => {
       setLocation(JSON.parse(localStorage.getItem("location")));
     });
