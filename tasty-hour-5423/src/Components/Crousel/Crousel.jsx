@@ -37,7 +37,7 @@ const Crousel = ({ arr }) => {
           arr?.map((item, index) => {
             return (
               <SwiperSlide key={index}>
-                <img style={{cursor:'pointer'}} src={item} alt={index} onClick={()=> navigate('/product')} />
+                <img style={{cursor:'pointer'}} src={item} alt={index} onClick={()=> navigate('/products')} />
               </SwiperSlide>
             );
           })}

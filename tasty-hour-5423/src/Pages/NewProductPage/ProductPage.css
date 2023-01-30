@@ -1,0 +1,15 @@
+.gridItemBorder{
+    cursor: pointer;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    transition: all 300ms ease-in-out;
+    /* color: #55555581; */
+}
+.gridItemBorder:hover{
+    box-shadow: rgba(43, 43, 43, 0.377) 0px 2px 8px 0px;
+}
+.gridItemBorder:last-of-type{
+    margin-top: auto;
+}
+.priceClass{
+    margin: 20px 0px;
+}

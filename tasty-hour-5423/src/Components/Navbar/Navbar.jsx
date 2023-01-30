@@ -60,8 +60,9 @@ const Navbar = () => {
 
   // console.log(location);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const {cart} = useSelector((store)=>store.cartReducer)
   return (
-    <Box className="nav">
+    <Box className="nav" w='100%'>
       <Box className="nav_logo">
         <Image
           src={logo}
@@ -113,7 +114,7 @@ const Navbar = () => {
           >
             Cart
           </Text>
-          <Text className="cart_item_count">{count}</Text>
+          <Text className="cart_item_count">{cart.length}</Text>
         </Box>
       </Box>
     </Box>
