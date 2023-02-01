@@ -16,7 +16,7 @@ const Navlist = () => {
           size="md"
           className="colour_changer"
           // _hover={{ backgroundColor: "white", color: "#902735" }}
-          onClick={() => navigate("/product2")}
+          onClick={() => navigate("/products")}
         >
           Home Decor
         </Heading>
@@ -30,7 +30,7 @@ const Navlist = () => {
           size="md"
           className="colour_changer"
           // _hover={{ backgroundColor: "white", color: "#902735" }}
-          onClick={() => navigate("/product2")}
+          onClick={() => navigate("/products")}
         >
           Products Near Me
         </Heading>

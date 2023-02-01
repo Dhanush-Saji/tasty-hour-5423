@@ -1,7 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,300;0,400;0,500;1,500;1,700&family=Poppins:wght@300;600&display=swap");
-* {
-  font-family: "Poppins", sans-serif;
-}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
+
+
 
 html {
   scroll-behavior: smooth;
@@ -32,4 +31,8 @@ html {
 .login_signupbox {
   min-height: 50vh;
   margin: auto;
+}
+
+* {
+  font-family: 'Poppins', sans-serif;
 }

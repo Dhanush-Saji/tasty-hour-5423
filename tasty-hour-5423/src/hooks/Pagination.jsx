@@ -1,7 +1,6 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import data from "../Data/db.json";
-import Styles from "../ProductPageCss/Product.module.css";
 import { useDispatch } from "react-redux";
 import { pagination } from "../Redux/Product_redux/action";
 const Pagination = () => {

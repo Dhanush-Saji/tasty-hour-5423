@@ -45,8 +45,7 @@ function Login() {
             "Account has been successfully created. You can Login Now!",
           status: "success",
           position: "top",
-          duration: 7000,
-          isClosable: true,
+          duration: 2000,
         });
       })
       .catch((err) => {
@@ -54,8 +53,7 @@ function Login() {
           title: "Signup Error",
           status: "error",
           position: "top",
-          duration: 7000,
-          isClosable: true,
+          duration: 2000,
         });
       });
   };

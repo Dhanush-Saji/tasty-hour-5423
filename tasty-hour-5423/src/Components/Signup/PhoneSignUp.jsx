@@ -70,8 +70,7 @@ const PhoneSignUp = () => {
         description: "Login Successfull",
         status: "success",
         position: "top",
-        isClosable: true,
-        duration: 7000,
+        duration: 2000,
       });
       navigate("/");
     } catch (err) {
@@ -98,8 +97,7 @@ const PhoneSignUp = () => {
         description: "Login Successfull",
         status: "success",
         position: "top",
-        isClosable: true,
-        duration: 7000,
+        duration: 2000,
       });
       // console.log(user.displayName || user.phoneNumber)
       navigate("/");
