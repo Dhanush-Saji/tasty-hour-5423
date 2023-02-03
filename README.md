@@ -7,9 +7,26 @@ Hello Everyone, We have build a clone of Craftvilla. Currently, we are pursuing 
 <br>
 
 
+## 🚀 Demo
 
-> • Deployed Link - [Craftco] (https://craftco.netlify.app/)
+**Front-end deployed URL:**
 
+[Craftco] (https://craftco.netlify.app/)
+
+
+##  📁 Folder structure
+- #### `public` - This holds all of our static files
+- #### `src`
+    - #### `assets` - This folder holds assets such as images, docs, and fonts
+    - #### `components` - This folder holds all of the different components that will make up our pages
+    - #### `pages` - These represent a unique page on the website i.e. Home or About. 
+    - #### `redux` - It consists of store, reducer, action and actiontypes and is responsible for global state management of our app.
+    - #### `App.js` - This is what renders all of our browser routes and different pages
+    - #### `index.js` - This is what renders the react app by rendering App.js.
+- #### `package.json` - Defines npm behaviors and packages for the client
+
+#### `.gitignore` - Tells git which files to ignore
+#### `README` - This file!
 
 *System display size 💻 = 1024 to 1680 pixels*
 <br>
