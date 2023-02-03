@@ -8,7 +8,7 @@ Hello Everyone, We have build a clone of Craftvilla. Currently, we are pursuing 
 
 
 
-> • Deployed Link - [Craftco] (https://elaborate-bublanina-371cc6.netlify.app/)
+> • Deployed Link - [Craftco] (https://craftco.netlify.app/)
 
 
 *System display size 💻 = 1024 to 1680 pixels*
