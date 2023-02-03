@@ -28,6 +28,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
 
 const PostTocart = (el) => {
+  const toast = useToast()
   return axios
     .post(`https://finalcart.onrender.com/cart`, { ...el, qty: 1 })
     .then((r) => {

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, Navigate } from "react-router-dom";
 import { Form, Alert } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 // import "react-phone-number-input/style.css";
@@ -43,7 +43,7 @@ const PhoneSignUp = () => {
       setResult(response);
       console.log(response);
       console.log("GetOtp", user);
-      setFlag(true);
+      
     } catch (err) {
       dispatch(getUserLoginError());
       setError(err.message);
@@ -62,7 +62,7 @@ const PhoneSignUp = () => {
       //   user: user.displayName || user.phoneNumber,
       //   token: user.accessToken,
       // };
-
+      setFlag(true);
       localStorage.setItem("auth", true);
 
       // localStorage.setItem("userData", JSON.stringify(userData));
@@ -73,25 +73,29 @@ const PhoneSignUp = () => {
         isClosable: true,
         duration: 7000,
       });
-      navigate("/");
+      return <Navigate to="/" />;
     } catch (err) {
       setError(err.message);
       dispatch(getUserLoginError());
     }
   };
 
+
+
   const handleGoogleSignIn = async (e) => {
     dispatch(getUserLoginReq());
     e.preventDefault();
     try {
       await googleSignIn();
+      navigate("/");
+      console.log('Hello From fn')
       localStorage.setItem("auth", true);
       // dispatch(getUserLoginSuccess({ user: number, token: otp }));
       const userData = {
-        user: user.displayName || user.phoneNumber,
-        token: user.accessToken,
+        user: user.displayName || user.phoneNumber || "User",
+        token: user.accessToken||"Token_89182",
       };
-
+      
       localStorage.setItem("userData", JSON.stringify(userData));
       // console.log("googleSignin", user);
       toast({
@@ -102,7 +106,7 @@ const PhoneSignUp = () => {
         duration: 7000,
       });
       // console.log(user.displayName || user.phoneNumber)
-      navigate("/");
+      
     } catch (error) {
       console.log(error.message);
     }
