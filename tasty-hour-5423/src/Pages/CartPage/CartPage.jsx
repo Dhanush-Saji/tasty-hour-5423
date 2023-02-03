@@ -25,13 +25,13 @@ const CartPage = () => {
   const [value, setValue] = useState("");
   const toast = useToast()
   const [quantity, setquantity] = useState(0);
-  const data  = useSelector((store) => store.cartReducer.cart);
+  const [data, setdata] = useState(useSelector((store) => store.cartReducer.cart) || [])
   const [total, settotal] = useState(0);
   const redirectToAddress = () =>{
     navigate('/address')
   }
   const incrementQnty = (item) =>{
-    dispatch(addProductToCart(item))
+    dispatch(addProductQntyCart(item))
   }
   const removeItem = (item) =>{
     dispatch(removeItemFromCart(item))
@@ -58,7 +58,8 @@ const CartPage = () => {
     data.map((item) => (qnty += item.quantity));
     settotal(sum);
     setquantity(qnty)
-  }, [data,total,quantity,incrementQnty]);
+  }, [data,total,quantity,incrementQnty,removeItem]);
+ 
   return (
     <>
         <VStack  p='5' w='100%'>
@@ -68,8 +69,8 @@ const CartPage = () => {
       <Grid  w='100%' templateColumns={{base:'repeat(1,1fr)',md:'70% 30%'}}>
         <VStack p="5">
           {data.map((item) => (
-            <>
-              <Flex w='100%' justifyContent='space-between'
+            <Box  key={item._id}>
+              <Flex key={item._id} w='100%' justifyContent='space-between'
                 boxShadow="rgba(99, 99, 99, 0.2) 0px 2px 8px 0px"
                 borderRadius="0.5rem" flexDirection={{base:'column',md:'row'}} alignItems='center'
                 p="5"
@@ -96,7 +97,7 @@ const CartPage = () => {
                 <Button onClick={()=>{removeItem(item)}} colorScheme='red' size="sm"><DeleteIcon /></Button>
                 </VStack>
               </Flex>
-            </>
+            </Box>
           ))}
           <Flex w='100%'>
             <VStack justifyContent='center'>

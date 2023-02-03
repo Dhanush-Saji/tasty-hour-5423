@@ -44,7 +44,6 @@ const Navbar = () => {
   // setCount(data.length);
   const handleQuerry = (e) => {
     setQuery(e);
-    console.log(query);
 
     // **callMethod(payload).then((res)=>{
     //   //do Something
@@ -94,15 +93,15 @@ const Navbar = () => {
       </Box>
       <Box className="account_cart">
         <DropdownNav />
-        <Box className="wishlist_in">
+        {/* <Box className="wishlist_in">
           <BsHeart
             onClick={() => navigate("/wishlist")}
             style={{ cursor: "pointer" }}
           />{" "}
           <Text className="visible_nav_text_largeScreen">WishList</Text>
-        </Box>
+        </Box> */}
 
-        <Box className="wishlist_in">
+        <Box className="wishlist_in" onClick={() => navigate("/cart")}>
           <AiOutlineShoppingCart
             onClick={() => navigate("/cart")}
             style={{ cursor: "pointer" }}

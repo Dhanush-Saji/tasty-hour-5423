@@ -17,8 +17,9 @@ export const getproductError = () =>{
         type:GET_PRODUCT_ERROR
     }
 }
-export const getProductsFromDb = () => (dispatch) =>{
+export const getProductsFromDb = (params) => (dispatch) =>{
     dispatch(getproductRequest())
-    axios.get("http://localhost:8000/products").then((res)=>dispatch(getproductSuccess(res.data))).catch((err)=>dispatch(getproductError()))
+    axios.get("https://bewildered-duck-flannel-nightgown.cyclic.app/products",{params}).then((res)=>dispatch(getproductSuccess(res.data))).catch((err)=>dispatch(getproductError()))
+    // dispatch(getproductSuccess(res.data))
     
 }

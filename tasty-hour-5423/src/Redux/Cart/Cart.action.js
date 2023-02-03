@@ -16,19 +16,9 @@ export const addtocartError = () =>{
         type:ADD_CART_ERROR
     }
 }
-export const addtocartqntyRequest = () =>{
-    return{
-        type:ADD_CARTQNTY_REQUEST
-    }
-}
 export const addtocartqntySuccess = (payload) =>{
     return{
         type:ADD_CARTQNTY_SUCCESS,payload
-    }
-}
-export const addtocartqntyError = () =>{
-    return{
-        type:ADD_CARTQNTY_ERROR
     }
 }
 export const removeItemCartRequest = () =>{
@@ -71,7 +61,6 @@ export const addProductToCart = (item) => (dispatch) =>{
     
 }
 export const addProductQntyCart = (item) => (dispatch) =>{
-    dispatch(addtocartqntyRequest())
     dispatch(addtocartqntySuccess(item))
 
     

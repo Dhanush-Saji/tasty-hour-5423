@@ -3,7 +3,6 @@ import AllRoutes from './Routes/AllRoutes';
 import Navbar from './Components/Navbar/Navbar';
 import Navlist from './Components/Navlist/Navlist';
 import Footer from './Components/Footer/Footer';
-import './App.css'
 
 function App() {
   return (

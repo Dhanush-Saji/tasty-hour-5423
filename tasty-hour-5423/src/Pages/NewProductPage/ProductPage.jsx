@@ -24,6 +24,7 @@ import { useSelector } from 'react-redux';
 import './ProductPage.css'
 import { addProductToCart } from "../../Redux/Cart/Cart.action";
 import NoData from "../../Components/NoData/NoData";
+import { useSearchParams } from "react-router-dom";
 const ProductPage = () => {
   const toast = useToast()
   const dispatch = useDispatch()
@@ -31,7 +32,59 @@ const ProductPage = () => {
   const { isOpen:filterisOpen, onOpen:filteronOpen, onClose:filteronClose } = useDisclosure()
   const [modalData, setmodalData] = useState({})
   const {products,isLoading} = useSelector((store)=>store.productReducer)
-  const sortByPopular = () =>{
+  const [searchParams,setSearchParams] = useSearchParams()
+  const initialCategory = searchParams.getAll("category")
+  const initialReturnable = searchParams.getAll("returnable")
+  const initialCancellable = searchParams.getAll("cancellable")
+  const initialPrice = searchParams.getAll("price")
+  const [category, setcategory] = useState(initialCategory || [])
+  const [returnable, setreturnable] = useState(initialReturnable || [])
+  const [cancellable, setcancellable] = useState(initialCancellable || [])
+  const [price, setprice] = useState(initialPrice || [])
+  const [sort, setsort] = useState('')
+  const sortByPopular = (e) =>{
+    console.log(e.target.value);
+    setsort(e.target.value);
+  }
+  const handleFilterPrice = (e) =>{
+    const newprice = [...price]
+    if(newprice.includes(e.target.value)){
+      newprice.splice(newprice.indexOf(e.target.value),1)
+    }
+    else{
+      newprice.push(e.target.value)
+    }
+    setprice(newprice)
+  }
+  const handleFilterCancellable = (e) =>{
+    const newcancellable = [...cancellable]
+    if(newcancellable.includes(e.target.value)){
+      newcancellable.splice(newcancellable.indexOf(e.target.value),1)
+    }
+    else{
+      newcancellable.push(e.target.value)
+    }
+    setcancellable(newcancellable)
+  }
+  const handleFilterReturnable = (e) =>{
+    const newreturnable = [...returnable]
+    if(newreturnable.includes(e.target.value)){
+      newreturnable.splice(newreturnable.indexOf(e.target.value),1)
+    }
+    else{
+      newreturnable.push(e.target.value)
+    }
+    setreturnable(newreturnable)
+  }
+  const handleFilterCategory = (e) =>{
+    const newcategory = [...category]
+    if(newcategory.includes(e.target.value)){
+      newcategory.splice(newcategory.indexOf(e.target.value),1)
+    }
+    else{
+      newcategory.push(e.target.value)
+    }
+    setcategory(newcategory)
   }
   const addToCart = (item) =>{
    toast({
@@ -42,11 +95,18 @@ const ProductPage = () => {
     dispatch(addProductToCart(item))
   }
     useEffect(()=>{
-        dispatch(getProductsFromDb())
-    },[])
+      let params={}
+    params.category = category;
+    params.returnable = returnable;
+    params.cancellable = cancellable;
+    params.price = price;
+    params.sort = sort;
+    setSearchParams(params)
+        dispatch(getProductsFromDb(params))
+    },[category,setSearchParams,returnable,cancellable,price,sort])
   return (
     <Flex>
-        <Grid p='5' templateColumns={{base:'repeat(1, 1fr)',md:'15% 85%'}}>
+        <Grid p='5' templateColumns={{base:'repeat(1, 1fr)',md:'20% 80%'}}>
           <GridItem>
           <VStack>
           <Text as="b" fontSize="2xl">
@@ -63,10 +123,10 @@ const ProductPage = () => {
                   </AccordionButton>
                 <AccordionPanel pb={4}>
                   <VStack>
-                <Checkbox colorScheme='green'>100-299</Checkbox>
-                <Checkbox colorScheme='green'>300-499</Checkbox>
-                <Checkbox colorScheme='green'>500-799</Checkbox>
-                <Checkbox colorScheme='green'>Above 800</Checkbox>
+                <Checkbox isChecked={price.includes('100-299')} onChange={handleFilterPrice} value='100-299' colorScheme='green'>100-299</Checkbox>
+                <Checkbox isChecked={price.includes("300-499")} onChange={handleFilterPrice} value='300-499' colorScheme='green'>300-499</Checkbox>
+                <Checkbox isChecked={price.includes("500-799")} onChange={handleFilterPrice} value='500-799' colorScheme='green'>500-799</Checkbox>
+                <Checkbox isChecked={price.includes("800")} onChange={handleFilterPrice} value='800' colorScheme='green'>Above 800</Checkbox>
                 </VStack>
                 </AccordionPanel>
               </AccordionItem>
@@ -79,11 +139,11 @@ const ProductPage = () => {
                   </AccordionButton>
                 <AccordionPanel pb={4}>
                   <VStack>
-                <Checkbox colorScheme='green'>Home Decor</Checkbox>
-                <Checkbox colorScheme='green'>Tote Bags</Checkbox>
-                <Checkbox colorScheme='green'>Kitchen Ware</Checkbox>
-                <Checkbox colorScheme='green'>Ceramic Bags</Checkbox>
-                <Checkbox colorScheme='green'>Idols</Checkbox>
+                <Checkbox isChecked={category.includes("home")} value='home' onChange={handleFilterCategory} colorScheme='green'>Home Decor</Checkbox>
+                <Checkbox  isChecked={category.includes("tote")} value='tote' onChange={handleFilterCategory} colorScheme='green'>Tote Bags</Checkbox>
+                <Checkbox  isChecked={category.includes("kitchen")} value='kitchen' onChange={handleFilterCategory} colorScheme='green'>Kitchen Ware</Checkbox>
+                <Checkbox  isChecked={category.includes("ceramic")} value='ceramic' onChange={handleFilterCategory} colorScheme='green'>Ceramic Bags</Checkbox>
+                <Checkbox  isChecked={category.includes("idols")} value='idols' onChange={handleFilterCategory} colorScheme='green'>Idols</Checkbox>
                 </VStack>
                 </AccordionPanel>
               </AccordionItem>
@@ -96,8 +156,8 @@ const ProductPage = () => {
                   </AccordionButton>
                 <AccordionPanel pb={4}>
                   <VStack>
-                <Checkbox colorScheme='green'>Yes</Checkbox>
-                <Checkbox colorScheme='green'>No</Checkbox>
+                <Checkbox  onChange={handleFilterReturnable} isChecked={returnable.includes("true")} colorScheme='green' value='true'>Yes</Checkbox>
+                <Checkbox onChange={handleFilterReturnable} isChecked={returnable.includes("false")} colorScheme='green' value='false'>No</Checkbox>
                 </VStack>
                 </AccordionPanel>
               </AccordionItem>
@@ -110,8 +170,8 @@ const ProductPage = () => {
                   </AccordionButton>
                 <AccordionPanel pb={4}>
                   <VStack>
-                <Checkbox colorScheme='green'>Yes</Checkbox>
-                <Checkbox colorScheme='green'>No</Checkbox>
+                <Checkbox value='true' isChecked={cancellable.includes("true")} onChange={handleFilterCancellable} colorScheme='green'>Yes</Checkbox>
+                <Checkbox value='false' isChecked={cancellable.includes("false")} onChange={handleFilterCancellable} colorScheme='green'>No</Checkbox>
                 </VStack>
                 </AccordionPanel>
               </AccordionItem>
@@ -120,15 +180,15 @@ const ProductPage = () => {
           </VStack>
           </GridItem>
         <GridItem w='100%'>
-        <Stack>
-          <Flex mt='5' ml='5' gap='5'>
-            <Box sx={{cursor:'pointer'}} onClick={sortByPopular}><Text as="b" fontSize="lg">Sort By: Popular</Text></Box>
-            <Box sx={{cursor:'pointer'}}><Text as="b" fontSize="lg">Low to High</Text></Box>
-            <Box sx={{cursor:'pointer'}}><Text as="b" fontSize="lg">High to Low</Text></Box>
+          <Grid p='7' gap='5' gridTemplateColumns={{base:'repeat(2,1fr)',md:'repeat(4,1fr)'}}>
+            <Button value='pop' onClick={sortByPopular}>Sort By: Popular</Button>
+            <Button value='asc' onClick={sortByPopular}>Low to High</Button>
+            <Button value='dsc' onClick={sortByPopular}>High to Low</Button>
+            <Button value='reset' onClick={sortByPopular}>Reset</Button>
             <Hide above='md'>
             <BiFilterAlt onClick={()=>{filteronOpen()}} />
             </Hide>
-          </Flex>
+          </Grid>
           {
             isLoading?(<div><NoData /></div>):(
               <>
@@ -157,7 +217,6 @@ const ProductPage = () => {
               </>
             )
           }
-          </Stack>
           </GridItem>
             </Grid>
           

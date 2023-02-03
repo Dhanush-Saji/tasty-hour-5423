@@ -6,7 +6,6 @@ import { useDispatch } from "react-redux";
 const Custom = () => {
   const dispatch = useDispatch();
   function handleChange(e) {
-    console.log(e.target.value);
     dispatch(filterdata(e.target.value));
   }
   return (

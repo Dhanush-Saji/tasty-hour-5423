@@ -1,5 +1,4 @@
 import { legacy_createStore, combineReducers, applyMiddleware } from "redux";
-import { reducer as ProductReducer } from "./Product_redux/reducer";
 import { reducer as AuthReducer } from "./AuthReducer/reducer";
 import { authReducer } from './Auth/Auth.reducer';
 import { cartReducer } from './Cart/Cart.reducer';
