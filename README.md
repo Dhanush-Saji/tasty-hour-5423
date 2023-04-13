@@ -12,6 +12,7 @@ Hello Everyone, We have build a clone of Craftvilla. Currently, we are pursuing 
 **Front-end deployed URL:**
 
 [Craftco] (https://craftco.netlify.app/)
+[Backend repo] (https://github.com/Dhanush-Saji/CraftCo-server)
 
 
 ##  📁 Folder structure
