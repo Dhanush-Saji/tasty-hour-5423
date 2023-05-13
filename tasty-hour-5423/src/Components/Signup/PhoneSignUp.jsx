@@ -100,7 +100,7 @@ const PhoneSignUp = () => {
         duration: 2000,
       });
       // console.log(user.displayName || user.phoneNumber)
-      navigate("/");
+      return navigate("/");
     } catch (error) {
       console.log(error.message);
     }

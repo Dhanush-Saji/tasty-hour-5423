@@ -16,6 +16,7 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { addProductQntyCart, addProductToCart, removeItemFromCart } from "../../Redux/Cart/Cart.action";
+import IncrementComponent from './../../Components/CartPage/IncrementComponent';
 
 const CartPage = () => {
   const AddressData = useSelector((store)=>store.addressReducer.address)
@@ -25,16 +26,11 @@ const CartPage = () => {
   const [value, setValue] = useState("");
   const toast = useToast()
   const [quantity, setquantity] = useState(0);
-  const [data, setdata] = useState(useSelector((store) => store.cartReducer.cart) || [])
+  let data = useSelector((store) => store.cartReducer.cart)
+  console.log(data);
   const [total, settotal] = useState(0);
   const redirectToAddress = () =>{
     navigate('/address')
-  }
-  const incrementQnty = (item) =>{
-    dispatch(addProductQntyCart(item))
-  }
-  const removeItem = (item) =>{
-    dispatch(removeItemFromCart(item))
   }
   const moveToCheckout = () =>{
     if(AddressData.length == 0){
@@ -58,8 +54,9 @@ const CartPage = () => {
     data.map((item) => (qnty += item.quantity));
     settotal(sum);
     setquantity(qnty)
-  }, [data,total,quantity,incrementQnty,removeItem]);
- 
+    console.log(qnty);
+  }, [data,total,quantity]);
+ console.log(quantity);
   return (
     <>
         <VStack  p='5' w='100%'>
@@ -82,20 +79,7 @@ const CartPage = () => {
                   alt="product image"
                 />
                 <Text maxW='200px'>{item.name}</Text>
-                <VStack justifyContent={'space-between'}>
-                <Flex alignItems={"center"} gap="2">
-                  <Button colorScheme="teal" size="md">
-                    -
-                  </Button>
-                  <Heading as="h5" size="sm">
-                    {item.quantity}
-                  </Heading>
-                  <Button colorScheme="teal" size="md" onClick={()=>{incrementQnty(item)}}>
-                    +
-                  </Button>
-                </Flex>
-                <Button onClick={()=>{removeItem(item)}} colorScheme='red' size="sm"><DeleteIcon /></Button>
-                </VStack>
+                <IncrementComponent qnty={item.quantity} item={item} />
               </Flex>
             </Box>
           ))}

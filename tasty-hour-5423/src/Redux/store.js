@@ -13,7 +13,6 @@ const rootReducer = combineReducers({
   authReducer,cartReducer,productReducer,addressReducer,ordersReducer
 });
 
-// NOTE: use this store variable to create a store.
 export const store = legacy_createStore(
   rootReducer,
   composeWithDevTools(applyMiddleware(thunk))

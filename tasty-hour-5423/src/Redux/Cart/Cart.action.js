@@ -31,11 +31,6 @@ export const removeItemCartSuccess = (payload) =>{
         type:REMOVE_ITEM_CART_SUCCESS,payload
     }
 }
-export const removeItemCartError = () =>{
-    return{
-        type:REMOVE_ITEM_CART_ERROR
-    }
-}
 
 export const emptyCartRequest = () =>{
     return{

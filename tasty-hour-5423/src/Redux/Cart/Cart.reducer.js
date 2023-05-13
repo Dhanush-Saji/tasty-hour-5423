@@ -6,6 +6,7 @@ const initialVal = {
 }
 
 export const cartReducer = (state=initialVal,{type,payload}) =>{
+    console.log(payload,'payload');
     switch(type){
         case ADD_CART_REQUEST:{
             return{...state,isLoading:true}
